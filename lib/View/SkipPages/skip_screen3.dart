@@ -1,5 +1,6 @@
 import 'package:docter_appointment_app/View/Authentication/login_screen.dart';
 import 'package:docter_appointment_app/View/Authentication/signin_screen.dart';
+import 'package:docter_appointment_app/ViewModal/skippage_sharedprefarance.dart';
 import 'package:docter_appointment_app/l10n/app_localizations.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +13,9 @@ class SkipScreenC extends StatefulWidget {
 }
 
 class _SkipScreenState extends State<SkipScreenC> {
+    Future changeStatus()async{
+    await SkippageSharedprefarance.saveStatus(false);
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -73,6 +77,7 @@ class _SkipScreenState extends State<SkipScreenC> {
                         width: double.infinity,
                         child: ElevatedButton(
                           onPressed: () {
+                            changeStatus();
                             Navigator.of(context).push(
                               MaterialPageRoute<void>(
                                 builder:(context) =>  SignUpScreen()
@@ -105,6 +110,7 @@ class _SkipScreenState extends State<SkipScreenC> {
                       SizedBox(height: 10),
                       InkWell(
                         onTap: () {
+                          changeStatus();
                           Navigator.push(context, MaterialPageRoute(builder: (context) => SignUpScreen(),));
                         },
                         child: Text(

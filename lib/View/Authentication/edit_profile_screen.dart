@@ -1,13 +1,20 @@
 import 'package:docter_appointment_app/View/Authentication/componets/input_button.dart';
 import 'package:docter_appointment_app/View/Authentication/componets/input_feild.dart';
 import 'package:docter_appointment_app/View/Authentication/componets/normal_textfeild.dart';
+import 'package:docter_appointment_app/View/home_screens/booking_screen_layout.dart';
 import 'package:docter_appointment_app/View/home_screens/home_layout.dart';
 import 'package:docter_appointment_app/View/home_screens/home_screen.dart';
+import 'package:docter_appointment_app/View/home_screens/profile_screen.dart';
 import 'package:docter_appointment_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class EditProfileScreen extends StatefulWidget {
-  const EditProfileScreen({super.key});
+  final String? from;
+  const EditProfileScreen({
+    super.key,
+    required this.from
+  });
 
   @override
   State<EditProfileScreen> createState() => _EditProfileScreenState();
@@ -15,6 +22,9 @@ class EditProfileScreen extends StatefulWidget {
 
 class _EditProfileScreenState extends State<EditProfileScreen> {
   String? selectedValue;
+  bool navi = true;
+ 
+
   final TextEditingController emailcontroller = TextEditingController();
   @override
   Widget build(BuildContext context) {
@@ -44,7 +54,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     Container(
                       width: 200,
                       height: 200,
-        
+
                       decoration: BoxDecoration(
                         image: DecorationImage(
                           image: AssetImage("assets/images/profile-avatar.png"),
@@ -56,7 +66,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         shape: BoxShape.circle,
                       ),
                     ),
-        
+
                     Padding(
                       padding: const EdgeInsets.only(top: 120, left: 140),
                       child: IconButton(
@@ -69,43 +79,46 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     ),
                   ],
                 ),
-        
-                NormalTextfeild(hind: AppLocalizations.of(context)!.editProfileName),
-                NormalTextfeild(hind: AppLocalizations.of(context)!.editProfileName),
-                NormalTextfeild(hind: AppLocalizations.of(context)!.editProfileEmail),
-                InputFeild(hind: AppLocalizations.of(context)!.editProfileDpb, icon: Icons.calendar_month,controller: emailcontroller,),
+
+                NormalTextfeild(
+                  hind: AppLocalizations.of(context)!.editProfileName,
+                ),
+                NormalTextfeild(
+                  hind: AppLocalizations.of(context)!.editProfileName,
+                ),
+                NormalTextfeild(
+                  hind: AppLocalizations.of(context)!.editProfileEmail,
+                ),
+                InputFeild(
+                  hind: AppLocalizations.of(context)!.editProfileDpb,
+                  icon: Icons.calendar_month,
+                  controller: emailcontroller,
+                ),
                 SizedBox(height: 20),
-        
+
                 Container(
-                  
                   decoration: BoxDecoration(
                     color: Colors.grey.shade100,
                     borderRadius: BorderRadius.circular(10),
-                    border: BoxBorder.all(width: 2,
-                    color: Colors.grey
-                    )
-                    
+                    border: BoxBorder.all(width: 2, color: Colors.grey),
                   ),
                   width: double.infinity,
                   child: Padding(
-                    padding: const EdgeInsets.only(
-                      top: 5,
-                      left: 20
-                    ),
+                    padding: const EdgeInsets.only(top: 5, left: 20),
                     child: DropdownButton(
                       value: selectedValue,
                       isExpanded: true,
-                      hint: Text(AppLocalizations.of(context)!.editProfileGender,style: TextStyle(
-                        
-                        color: Colors.grey
-                      ),),
-                    
-                    
-                      
+                      hint: Text(
+                        AppLocalizations.of(context)!.editProfileGender,
+                        style: TextStyle(color: Colors.grey),
+                      ),
+
                       items: ["Male", "Female", "Other"]
                           .map(
-                            (item) =>
-                                DropdownMenuItem(value: item, child: Text(item)),
+                            (item) => DropdownMenuItem(
+                              value: item,
+                              child: Text(item),
+                            ),
                           )
                           .toList(),
                       onChanged: (value) {
@@ -116,15 +129,63 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     ),
                   ),
                 ),
-        
-                SizedBox(height: 20,),
-        
-                InputButton(inputText: AppLocalizations.of(context)!.save,
-                nextpage: ()=> Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context)=> const HomeLayout()
-                        )
-                    ),
+
+                SizedBox(height: 20),
+
+                InputButton(
+                  inputText: AppLocalizations.of(context)!.confirm,
+                  nextpage: () {
+                    showDialog(
+                      context: context,
+                      builder: (context) => AlertDialog(
+                        title: Column(
+                          children: [
+                            Image.asset(
+                              "assets/images/popupimage.png",
+                              width: 130,
+                              height: 130,
+                            ),
+                            SizedBox(height: 20),
+
+                            const Text(
+                              "Congratulations!",
+                              style: TextStyle(fontSize: 20),
+                            ),
+                          ],
+                        ),
+                        content: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(15.0),
+                              child: const Text(
+                                "Your account is ready to use. You will be redirected to the Home Page in a few seconds....",
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          ],
+                        ),
+                        actions: [
+                          const SpinKitCircle(color: Colors.blue, size: 50),
+                        ],
+                      ),
+                    );
+
+                    Future.delayed(Duration(seconds: 3),(){
+
+                       //Navigator.pop(context);
+                     
+                      if(widget.from=="profile"){
+                        
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => HomeLayout(initialIndex: 3,),));
+                      }
+                      else{
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => HomeLayout(),));
+                      }
+
+                    }
+                    );
+                  },
                 ),
               ],
             ),

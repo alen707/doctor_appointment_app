@@ -1,5 +1,7 @@
 import 'package:docter_appointment_app/View/Authentication/componets/input_button.dart';
+import 'package:docter_appointment_app/View/home_screens/booking_screen_layout.dart';
 import 'package:docter_appointment_app/View/home_screens/componets/book_appoinment_timeselection.dart';
+import 'package:docter_appointment_app/View/home_screens/home_layout.dart';
 import 'package:docter_appointment_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -14,23 +16,23 @@ class BookAppoinmentScreen extends StatefulWidget {
 class _BookAppoinmentScreenState extends State<BookAppoinmentScreen> {
   DateTime _focusedDay = DateTime.now();
   DateTime? _selectedDay;
-  
+
   @override
   Widget build(BuildContext context) {
     List<String> time = [
-  AppLocalizations.of(context)!.t1,
-  AppLocalizations.of(context)!.t2,
-  AppLocalizations.of(context)!.t3,
-  AppLocalizations.of(context)!.t4,
-  AppLocalizations.of(context)!.t5,
-  AppLocalizations.of(context)!.t6,
-  AppLocalizations.of(context)!.t7,
-  AppLocalizations.of(context)!.t8,
-  AppLocalizations.of(context)!.t9,
-  AppLocalizations.of(context)!.t10,
-  AppLocalizations.of(context)!.t11,
-  AppLocalizations.of(context)!.t12,
-];
+      AppLocalizations.of(context)!.t1,
+      AppLocalizations.of(context)!.t2,
+      AppLocalizations.of(context)!.t3,
+      AppLocalizations.of(context)!.t4,
+      AppLocalizations.of(context)!.t5,
+      AppLocalizations.of(context)!.t6,
+      AppLocalizations.of(context)!.t7,
+      AppLocalizations.of(context)!.t8,
+      AppLocalizations.of(context)!.t9,
+      AppLocalizations.of(context)!.t10,
+      AppLocalizations.of(context)!.t11,
+      AppLocalizations.of(context)!.t12,
+    ];
     return Scaffold(
       appBar: AppBar(
         title: Center(
@@ -134,25 +136,61 @@ class _BookAppoinmentScreenState extends State<BookAppoinmentScreen> {
                 },
               ),
 
-              InputButton(inputText:  AppLocalizations.of(context)!.confirm, nextpage: () {
+              InputButton(
+                inputText: AppLocalizations.of(context)!.confirm,
+                nextpage: () {
                   showDialog(
-  context: context,
-  builder: (context) => AlertDialog(
-    title: const Text("Appointment Confirmed"),
-    content: const Text(
-      "Your appointment has been booked successfully.",
-    ),
-    actions: [
-      
-      TextButton(
-        onPressed: () => Navigator.pop(context),
-        child: const Text("OK"),
-      ),
-    ],
-  ),
-) ;
-            
-          },),
+                    context: context,
+                    builder: (context) => AlertDialog(
+                      title: Column(
+                        children: [
+                          Image.asset(
+                            "assets/images/popupimage.png",
+                            width: 130,
+                            height: 130,
+                          ),
+                          SizedBox(height: 20),
+
+                          const Text(
+                            "Congratulations!",
+                            style: TextStyle(fontSize: 20),
+                          ),
+                        ],
+                      ),
+                      content: Padding(
+                        padding: const EdgeInsets.all(15.0),
+                        child: const Text(
+                          "Your appointment with Dr. David Patel is confirmed for June 30, 2023, at 10:00 AM.",
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                      actions: [
+                        InputButton(
+                          inputText: "Done",
+                          nextpage: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => HomeLayout(initialIndex: 2,),
+                            ),
+                          ),
+                        ),
+                        Center(
+                          child: TextButton(
+                            onPressed: () => Navigator.pop(context),
+                            child: Text(
+                              "Edit your appointment ",
+                              style: TextStyle(
+                                color: Colors.grey,
+                                fontSize: 14,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              ),
             ],
           ),
         ),

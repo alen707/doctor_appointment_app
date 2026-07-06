@@ -64,8 +64,8 @@ class _MyAppState extends State<MyApp> {
 
      locale: languageProvider.locale,
        //home: const MyHomePage(),
-      //home: FirstLoadingScreen(),
-     home: SkipScreenA(),
+      home: FirstLoadingScreen(),
+     //home: SkipScreenA(),
       //home: LoginScreen(),
        //home: SignUpScreen(),
        //home: ForgetPasswordScreen(),

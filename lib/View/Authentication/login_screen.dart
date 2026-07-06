@@ -81,7 +81,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: InputButton(inputText: AppLocalizations.of(context)!.createAcount,
                   nextpage: ()=> Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (context)=> const EditProfileScreen()
+                      builder: (context)=> const EditProfileScreen(from: "login",)
                       )
                   ),
                   ),
