@@ -1,6 +1,6 @@
 import 'package:docter_appointment_app/View/Authentication/signin_screen.dart';
 import 'package:docter_appointment_app/View/SkipPages/skip_screen1.dart';
-import 'package:docter_appointment_app/ViewModal/skippage_sharedprefarance.dart';
+import 'package:docter_appointment_app/ViewModal/skippage_sharedpreferance.dart';
 import 'package:flutter/material.dart';
 
 class FirstLoadingScreen extends StatefulWidget {
@@ -11,36 +11,30 @@ class FirstLoadingScreen extends StatefulWidget {
 }
 
 class _FirstLoadingScreenState extends State<FirstLoadingScreen> {
-  
   bool firstStart = false;
 
   @override
   void initState() {
     super.initState();
     checkStatus();
-    
-
-    
   }
+
   Future<void> checkStatus() async {
-    bool firstStart = await SkippageSharedprefarance.getStatus();
+    bool firstStart = await SkippageSharedpreferance.getStatus();
 
     await Future.delayed(const Duration(seconds: 3));
 
-    
     if (firstStart) {
       Navigator.pushReplacement(
+        // ignore: use_build_context_synchronously
         context,
-        MaterialPageRoute(
-          builder: (_) => const SkipScreenA(),
-        ),
+        MaterialPageRoute(builder: (_) => const SkipScreenA()),
       );
     } else {
       Navigator.pushReplacement(
+        // ignore: use_build_context_synchronously
         context,
-        MaterialPageRoute(
-          builder: (_) => const SignUpScreen(),
-        ),
+        MaterialPageRoute(builder: (_) => const SignUpScreen()),
       );
     }
   }

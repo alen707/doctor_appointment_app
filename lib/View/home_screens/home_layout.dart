@@ -5,13 +5,9 @@ import 'package:docter_appointment_app/View/home_screens/profile_screen.dart';
 import 'package:flutter/material.dart';
 
 class HomeLayout extends StatefulWidget {
- final int initialIndex;
-  
+  final int initialIndex;
 
-  const HomeLayout({super.key,
-  this.initialIndex=0
-  
-  });
+  const HomeLayout({super.key, this.initialIndex = 0});
 
   @override
   State<HomeLayout> createState() => _HomeLayoutState();
@@ -20,17 +16,17 @@ class HomeLayout extends StatefulWidget {
 class _HomeLayoutState extends State<HomeLayout> {
   int _currentIndex = 0;
   final List<Widget> _screens = [
-    const MyHomePage( ),
+    const MyHomePage(),
     const LocationScreen(),
     const BookingScreenLayout(),
-    const ProfileScreen()
+    const ProfileScreen(),
   ];
   @override
   void initState() {
     super.initState();
-     _currentIndex = widget.initialIndex;
-    
+    _currentIndex = widget.initialIndex;
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,12 +35,12 @@ class _HomeLayoutState extends State<HomeLayout> {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
         type: BottomNavigationBarType.fixed,
-        
+
         unselectedItemColor: Colors.grey,
         selectedItemColor: Colors.black,
-        
+
         onTap: (index) => setState(() {
-          _currentIndex=index;
+          _currentIndex = index;
         }),
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: ""),

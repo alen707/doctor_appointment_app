@@ -1,6 +1,6 @@
 import 'package:docter_appointment_app/View/Authentication/edit_profile_screen.dart';
 import 'package:docter_appointment_app/View/Authentication/signin_screen.dart';
-import 'package:docter_appointment_app/View/home_screens/componets/profile_data_butten.dart';
+import 'package:docter_appointment_app/View/home_screens/components/profile_data_button.dart';
 import 'package:docter_appointment_app/View/home_screens/favorites_layout.dart';
 import 'package:docter_appointment_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
@@ -38,7 +38,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         Container(
                           width: 168,
                           height: 168,
-        
+
                           decoration: BoxDecoration(
                             image: DecorationImage(
                               image: AssetImage(
@@ -49,7 +49,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             shape: BoxShape.circle,
                           ),
                         ),
-        
+
                         Positioned(
                           bottom: 0,
                           right: 0,
@@ -85,47 +85,43 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
             ),
             SizedBox(height: 20),
-            ProfileDataButten(
+            ProfileDataButton(
               icons: AssetImage("assets/icon/user-edit.png"),
               title: AppLocalizations.of(context)!.editprofile,
-               nextpage: () =>  Navigator.push(context,
-               MaterialPageRoute(builder: (context) =>EditProfileScreen( from: "profile",) )
-               ) ,
+              nextpage: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => EditProfileScreen(from: "profile"),
+                ),
+              ),
             ),
-            ProfileDataButten(
+            ProfileDataButton(
               icons: AssetImage("assets/icon/heart.png"),
               title: AppLocalizations.of(context)!.favorites,
-              nextpage: () =>  Navigator.push(context,
-               MaterialPageRoute(builder: (context) =>FavoritesLayout() )
-               ),
+              nextpage: () => Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => FavoritesLayout()),
+              ),
             ),
-            ProfileDataButten(
+            ProfileDataButton(
               icons: AssetImage("assets/icon/notification.png"),
               title: AppLocalizations.of(context)!.notifications,
-              nextpage: () {
-                
-              },
+              nextpage: () {},
             ),
-            ProfileDataButten(
+            ProfileDataButton(
               icons: AssetImage("assets/icon/setting-.png"),
               title: AppLocalizations.of(context)!.settings,
-              nextpage: () {
-                
-              },
+              nextpage: () {},
             ),
-            ProfileDataButten(
+            ProfileDataButton(
               icons: AssetImage("assets/icon/message-question.png"),
               title: AppLocalizations.of(context)!.helpandsupport,
-              nextpage: () {
-                
-              },
+              nextpage: () {},
             ),
-            ProfileDataButten(
+            ProfileDataButton(
               icons: AssetImage("assets/icon/security-safe.png"),
               title: AppLocalizations.of(context)!.termsandconditions,
-              nextpage: () {
-                
-              },
+              nextpage: () {},
             ),
             Padding(
               padding: const EdgeInsets.only(left: 20, right: 20, bottom: 25),
@@ -136,7 +132,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     showModalBottomSheet(
                       context: context,
                       builder: (BuildContext context) {
-                        return Container(
+                        return SizedBox(
                           height: 200,
                           width: double.infinity,
                           child: Column(
@@ -151,7 +147,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 ),
                               ),
                               SizedBox(height: 20),
-        
+
                               Text(
                                 AppLocalizations.of(context)!.loginDiscription,
                                 style: TextStyle(
@@ -173,31 +169,36 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                         },
                                         child: Text(
                                           AppLocalizations.of(context)!.cancel,
-                                          style: TextStyle(fontSize: 14,
-                                          color: Colors.black
+                                          style: TextStyle(
+                                            fontSize: 14,
+                                            color: Colors.black,
                                           ),
                                         ),
                                       ),
                                     ),
-                                    SizedBox(width: 20,),
+                                    SizedBox(width: 20),
                                     Expanded(
                                       child: ElevatedButton(
                                         style: ElevatedButton.styleFrom(
                                           backgroundColor: Colors.black,
                                         ),
                                         onPressed: () {
-                                          Navigator.push(context,
-                                           MaterialPageRoute(builder: (context) =>SignUpScreen())
-                                           );
-        
-        
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  SignUpScreen(),
+                                            ),
+                                          );
                                         },
                                         child: Text(
-                                        AppLocalizations.of(context)!.yesLogout,
+                                          AppLocalizations.of(
+                                            context,
+                                          )!.yesLogout,
                                           style: TextStyle(
                                             fontSize: 14,
-                                            color: Colors.white
-                                            ),
+                                            color: Colors.white,
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -210,28 +211,26 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       },
                     );
                   },
-                  child: Container(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          children: [
-                            ImageIcon(
-                              AssetImage("assets/icon/logout.png"),
-                              size: 24,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          ImageIcon(
+                            AssetImage("assets/icon/logout.png"),
+                            size: 24,
+                          ),
+                          SizedBox(width: 20),
+                          Text(
+                            AppLocalizations.of(context)!.logout,
+                            style: TextStyle(
+                              color: Colors.grey.shade700,
+                              fontSize: 18,
                             ),
-                            SizedBox(width: 20),
-                            Text(
-                              AppLocalizations.of(context)!.logout,
-                              style: TextStyle(
-                                color: Colors.grey.shade700,
-                                fontSize: 18,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
                 ),
               ),

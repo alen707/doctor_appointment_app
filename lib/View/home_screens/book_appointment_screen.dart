@@ -1,21 +1,21 @@
 import 'package:docter_appointment_app/View/Authentication/componets/input_button.dart';
-import 'package:docter_appointment_app/View/home_screens/booking_screen_layout.dart';
-import 'package:docter_appointment_app/View/home_screens/componets/book_appoinment_timeselection.dart';
+import 'package:docter_appointment_app/View/home_screens/components/book_appointment_timeselection.dart';
 import 'package:docter_appointment_app/View/home_screens/home_layout.dart';
 import 'package:docter_appointment_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 
-class BookAppoinmentScreen extends StatefulWidget {
-  const BookAppoinmentScreen({super.key});
+class BookAppointmentScreen extends StatefulWidget {
+  const BookAppointmentScreen({super.key});
 
   @override
-  State<BookAppoinmentScreen> createState() => _BookAppoinmentScreenState();
+  State<BookAppointmentScreen> createState() => _BookAppoinmentScreenState();
 }
 
-class _BookAppoinmentScreenState extends State<BookAppoinmentScreen> {
+class _BookAppoinmentScreenState extends State<BookAppointmentScreen> {
   DateTime _focusedDay = DateTime.now();
   DateTime? _selectedDay;
+  int selectedindex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +42,12 @@ class _BookAppoinmentScreenState extends State<BookAppoinmentScreen> {
           ),
         ),
 
-        leading: Icon(Icons.arrow_back),
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(Icons.arrow_back),
+        ),
         actions: [SizedBox(width: 30)],
       ),
 
@@ -119,8 +124,6 @@ class _BookAppoinmentScreenState extends State<BookAppoinmentScreen> {
               //     padding: const EdgeInsets.all(8.0),
               //     child: Text("10:00"),
               //   ),
-
-              // )
               GridView.builder(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
@@ -132,7 +135,16 @@ class _BookAppoinmentScreenState extends State<BookAppoinmentScreen> {
                 ),
                 itemCount: time.length,
                 itemBuilder: (context, index) {
-                  return BookAppoinmentTmeselection(time: time[index]);
+                  return BookAppointmentTimeselection(
+                    time: time[index],
+                    intex: index,
+                    selectedindex: selectedindex,
+                    ontap: () {
+                      setState(() {
+                        selectedindex = index;
+                      });
+                    },
+                  );
                 },
               ),
 
@@ -170,7 +182,7 @@ class _BookAppoinmentScreenState extends State<BookAppoinmentScreen> {
                           nextpage: () => Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => HomeLayout(initialIndex: 2,),
+                              builder: (context) => HomeLayout(initialIndex: 2),
                             ),
                           ),
                         ),

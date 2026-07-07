@@ -1,7 +1,6 @@
 import 'package:docter_appointment_app/Modal/docters_list_modal.dart';
 import 'package:docter_appointment_app/Service/docter_list_api.dart';
-import 'package:docter_appointment_app/View/home_screens/componets/docter_card.dart';
-import 'package:docter_appointment_app/View/home_screens/componets/docter_list_data.dart';
+import 'package:docter_appointment_app/View/home_screens/components/doctor_list_data.dart';
 import 'package:docter_appointment_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
@@ -13,7 +12,7 @@ class FavoritesDoctorsScreen extends StatefulWidget {
 }
 
 class _FavoritesDoctorsScreenState extends State<FavoritesDoctorsScreen> {
-  final DocterListApi docterDetailApi = DocterListApi();
+  final DocterListApi doctorDetailApi = DocterListApi();
   List<DocterListModal> docterlist = [];
   @override
   void initState() {
@@ -22,7 +21,7 @@ class _FavoritesDoctorsScreenState extends State<FavoritesDoctorsScreen> {
   }
 
   Future<void> loadDoctor() async {
-    docterlist = await docterDetailApi.getDocterListApi();
+    docterlist = await doctorDetailApi.getDocterListApi();
     setState(() {});
   }
 
@@ -37,14 +36,13 @@ class _FavoritesDoctorsScreenState extends State<FavoritesDoctorsScreen> {
             ListView.builder(
               shrinkWrap: true,
               itemCount: docterlist.length,
-              itemBuilder: (context, index) => 
-               DocterListData(
-               name: docterlist[index].name,
-                          catogary: docterlist[index].specialization,
-                          location: docterlist[index].hospital,
-                          rating: docterlist[index].rating,
-                          reviewcount: docterlist[index].reviews,
-              
+              itemBuilder: (context, index) => DoctorListData(
+                name: docterlist[index].name,
+                categary: docterlist[index].specialization,
+                location: docterlist[index].hospital,
+                rating: docterlist[index].rating,
+                reviewcount: docterlist[index].reviews,
+
                 ontap: () {
                   showModalBottomSheet(
                     context: context,
@@ -57,7 +55,9 @@ class _FavoritesDoctorsScreenState extends State<FavoritesDoctorsScreen> {
                             SizedBox(height: 30),
                             Center(
                               child: Text(
-                                AppLocalizations.of(context)!.removefromfavorites,
+                                AppLocalizations.of(
+                                  context,
+                                )!.removefromfavorites,
                                 style: TextStyle(
                                   fontSize: 20,
                                   fontWeight: FontWeight.bold,
@@ -66,17 +66,16 @@ class _FavoritesDoctorsScreenState extends State<FavoritesDoctorsScreen> {
                             ),
                             Padding(
                               padding: const EdgeInsets.all(20.0),
-                              child: DocterListData(
+                              child: DoctorListData(
                                 ontap: () {},
-                               name: docterlist[index].name,
-                          catogary: docterlist[index].specialization,
-                          location: docterlist[index].hospital,
-                          rating: docterlist[index].rating,
-                          reviewcount: docterlist[index].reviews,
-              
+                                name: docterlist[index].name,
+                                categary: docterlist[index].specialization,
+                                location: docterlist[index].hospital,
+                                rating: docterlist[index].rating,
+                                reviewcount: docterlist[index].reviews,
                               ),
                             ),
-              
+
                             Padding(
                               padding: const EdgeInsets.only(
                                 top: 10,

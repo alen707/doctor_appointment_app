@@ -1,16 +1,17 @@
 import 'package:docter_appointment_app/Modal/hospital_list_modal.dart';
 import 'package:docter_appointment_app/Service/hospital_list_api.dart';
-import 'package:docter_appointment_app/View/home_screens/componets/medical_centers.dart';
+import 'package:docter_appointment_app/View/home_screens/components/medical_centers.dart';
 import 'package:flutter/material.dart';
 
-class FavoritesHospitalsScrenn extends StatefulWidget {
-  const FavoritesHospitalsScrenn({super.key});
+class FavoritesHospitalsScreen extends StatefulWidget {
+  const FavoritesHospitalsScreen({super.key});
 
   @override
-  State<FavoritesHospitalsScrenn> createState() => _FavoritesHospitalsScrennState();
+  State<FavoritesHospitalsScreen> createState() =>
+      _FavoritesHospitalsScrennState();
 }
 
-class _FavoritesHospitalsScrennState extends State<FavoritesHospitalsScrenn> {
+class _FavoritesHospitalsScrennState extends State<FavoritesHospitalsScreen> {
   final HospitalListApi hospitalListApi = HospitalListApi();
   List<HospitalModel> hospitallist = [];
   @override
@@ -20,7 +21,7 @@ class _FavoritesHospitalsScrennState extends State<FavoritesHospitalsScrenn> {
   }
 
   Future<void> loadDoctor() async {
-    hospitallist = await hospitalListApi.getHospitalListApi() ;
+    hospitallist = await hospitalListApi.getHospitalListApi();
 
     setState(() {});
   }
@@ -33,19 +34,18 @@ class _FavoritesHospitalsScrennState extends State<FavoritesHospitalsScrenn> {
       child: ListView.builder(
         shrinkWrap: true,
         itemCount: hospitallist.length,
-        itemBuilder: (context, index) => MadicalCenters(
-          wid: double.infinity,
-          location: "${hospitallist[index].address}, ${hospitallist[index].city}",
+        itemBuilder: (context, index) => MedicalCenters(
+          width: double.infinity,
+          location:
+              "${hospitallist[index].address}, ${hospitallist[index].city}",
           name: hospitallist[index].name,
           rating: hospitallist[index].rating,
           reviewcount: hospitallist[index].reviews,
           distance: hospitallist[index].distance,
           time: hospitallist[index].duration,
           type: hospitallist[index].type,
-          
-          ) ,
-        
         ),
+      ),
     );
   }
 }

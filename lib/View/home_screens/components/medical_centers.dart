@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class MadicalCenters extends StatefulWidget {
-  final double wid;
+class MedicalCenters extends StatefulWidget {
+  final double width;
   final String name;
   final String location;
   final double rating;
@@ -10,29 +10,29 @@ class MadicalCenters extends StatefulWidget {
   final String time;
   final String type;
 
-  const MadicalCenters({
-    super.key, required this.wid,
+  const MedicalCenters({
+    super.key,
+    required this.width,
     required this.location,
     required this.name,
     required this.rating,
     required this.reviewcount,
     required this.distance,
     required this.time,
-    required this.type
-    });
+    required this.type,
+  });
 
   @override
-  State<MadicalCenters> createState() => _MadicalCentersState();
+  State<MedicalCenters> createState() => _MadicalCentersState();
 }
 
-class _MadicalCentersState extends State<MadicalCenters> {
+class _MadicalCentersState extends State<MedicalCenters> {
   @override
   Widget build(BuildContext context) {
-
     return Padding(
       padding: const EdgeInsets.only(left: 15, right: 15, top: 15),
       child: Container(
-        width: widget.wid,
+        width: widget.width,
         decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(
@@ -53,18 +53,14 @@ class _MadicalCentersState extends State<MadicalCenters> {
               borderRadius: BorderRadius.vertical(top: Radius.circular(10)),
               child: Image.asset(
                 "assets/images/medical_centerA.jpg",
-                width: widget.wid,
+                width: widget.width,
                 height: 115,
                 fit: BoxFit.cover,
               ),
             ),
 
             Padding(
-              padding: const EdgeInsets.only(
-                top: 10,
-                left: 10,
-                right: 10
-              ),
+              padding: const EdgeInsets.only(top: 10, left: 10, right: 10),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -82,16 +78,24 @@ class _MadicalCentersState extends State<MadicalCenters> {
 
                   Row(
                     children: [
-                        Row(
-                      children: [
-                        ...List.generate(
-                          widget.rating.floor(),
-                          (_) => const Icon(Icons.star, color: Colors.amber,size: 15),
-                        ),
-                        if (widget.rating % 1 == 0.5)
-                          const Icon(Icons.star_half, color: Colors.amber,size: 15),
-                      ],
-                    ),
+                      Row(
+                        children: [
+                          ...List.generate(
+                            widget.rating.floor(),
+                            (_) => const Icon(
+                              Icons.star,
+                              color: Colors.amber,
+                              size: 15,
+                            ),
+                          ),
+                          if (widget.rating % 1 == 0.5)
+                            const Icon(
+                              Icons.star_half,
+                              color: Colors.amber,
+                              size: 15,
+                            ),
+                        ],
+                      ),
                       SizedBox(width: 5),
                       Text(
                         "${widget.rating} (${widget.reviewcount} Reviews)",
@@ -99,12 +103,9 @@ class _MadicalCentersState extends State<MadicalCenters> {
                       ),
                     ],
                   ),
-  
                 ],
               ),
             ),
-
-            
 
             // Container(
             //   height: 0,
@@ -115,20 +116,11 @@ class _MadicalCentersState extends State<MadicalCenters> {
             //   ),
             // ),
             Padding(
-              padding: const EdgeInsets.only(
-                left: 10,
-                right: 10
-              ),
-              child: Divider(
-                color: Colors.grey.shade300,
-              thickness: 1,),
+              padding: const EdgeInsets.only(left: 10, right: 10),
+              child: Divider(color: Colors.grey.shade300, thickness: 1),
             ),
             Padding(
-              padding: const EdgeInsets.only(
-                bottom: 10,
-                left: 10,
-                right: 10
-              ),
+              padding: const EdgeInsets.only(bottom: 10, left: 10, right: 10),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [

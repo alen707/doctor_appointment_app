@@ -1,44 +1,44 @@
 import 'package:docter_appointment_app/Modal/docters_list_modal.dart';
 import 'package:docter_appointment_app/Service/docter_list_api.dart';
-import 'package:docter_appointment_app/View/home_screens/componets/docter_list_data.dart';
-import 'package:docter_appointment_app/View/home_screens/componets/filter_button.dart';
-import 'package:docter_appointment_app/View/home_screens/componets/search_feild.dart';
-import 'package:docter_appointment_app/View/home_screens/docter_details.dart';
+import 'package:docter_appointment_app/View/home_screens/components/doctor_list_data.dart';
+import 'package:docter_appointment_app/View/home_screens/components/filter_button.dart';
+import 'package:docter_appointment_app/View/home_screens/components/search_field.dart';
+import 'package:docter_appointment_app/View/home_screens/doctor_details.dart';
 import 'package:docter_appointment_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
-class DocterSearchScreen extends StatefulWidget {
-  const DocterSearchScreen({super.key});
+class DoctorSearchScreen extends StatefulWidget {
+  const DoctorSearchScreen({super.key});
 
   @override
-  State<DocterSearchScreen> createState() => _DocterSearchScreenState();
+  State<DoctorSearchScreen> createState() => _DocterSearchScreenState();
 }
 
-class _DocterSearchScreenState extends State<DocterSearchScreen> {
-    final DocterListApi docterDetailApi=DocterListApi();
-  List <DocterListModal> docterlist=[];
+class _DocterSearchScreenState extends State<DoctorSearchScreen> {
+  final DocterListApi docterDetailApi = DocterListApi();
+  List<DocterListModal> docterlist = [];
+  int selectedindex = 0;
   @override
   void initState() {
     super.initState();
     loadDoctor();
   }
-  Future<void>loadDoctor()async{
 
-    docterlist= await docterDetailApi.getDocterListApi();
+  Future<void> loadDoctor() async {
+    docterlist = await docterDetailApi.getDocterListApi();
     setState(() {});
-
   }
 
   @override
   Widget build(BuildContext context) {
-      final List<String> filters = [
-    AppLocalizations.of(context)!.all,
-    AppLocalizations.of(context)!.dentistry,
-    AppLocalizations.of(context)!.cardio,
-    AppLocalizations.of(context)!.pulmono,
-    AppLocalizations.of(context)!.general,
-    AppLocalizations.of(context)!.neurology,
-  ];
+    final List<String> filters = [
+      AppLocalizations.of(context)!.all,
+      AppLocalizations.of(context)!.dentistry,
+      AppLocalizations.of(context)!.cardio,
+      AppLocalizations.of(context)!.pulmono,
+      AppLocalizations.of(context)!.general,
+      AppLocalizations.of(context)!.neurology,
+    ];
     return Scaffold(
       body: Container(
         color: Colors.white,
@@ -72,7 +72,7 @@ class _DocterSearchScreenState extends State<DocterSearchScreen> {
                   SizedBox(width: 30),
                 ],
               ),
-              SearchFeild(title: AppLocalizations.of(context)!.searchdoc,),
+              SearchField(title: AppLocalizations.of(context)!.searchdoc),
 
               SizedBox(height: 15),
 
@@ -83,7 +83,16 @@ class _DocterSearchScreenState extends State<DocterSearchScreen> {
                   itemCount: filters.length,
 
                   itemBuilder: (context, index) {
-                    return FilterButen(title: filters[index]);
+                    return FilterButen(
+                      title: filters[index],
+                      index: index,
+                      ontap: () {
+                        setState(() {
+                          selectedindex = index;
+                        });
+                      },
+                      selectedindex: selectedindex,
+                    );
                   },
                 ),
               ),
@@ -117,26 +126,21 @@ class _DocterSearchScreenState extends State<DocterSearchScreen> {
                   itemBuilder: (context, index) {
                     return Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: DocterListData(
-
+                      child: DoctorListData(
                         name: docterlist[index].name,
-                        catogary: docterlist[index].specialization,
+                        categary: docterlist[index].specialization,
                         location: docterlist[index].hospital,
                         rating: docterlist[index].rating,
                         reviewcount: docterlist[index].reviews,
 
-
-
-
-
-                        ontap: (){
-                          Navigator.push(context, 
-                          MaterialPageRoute(builder: (context) => DocterDetails(),));
-                        }
-
-
-
-
+                        ontap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => DoctorDetails(),
+                            ),
+                          );
+                        },
                       ),
                     );
                   },

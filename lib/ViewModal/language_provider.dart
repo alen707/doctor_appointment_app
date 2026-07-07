@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:docter_appointment_app/ViewModal/langage_sheredpteference.dart';
+import 'package:docter_appointment_app/ViewModal/langage_sharedpreferance.dart';
 
 class LanguageProvider extends ChangeNotifier {
   Locale _locale = const Locale('en');

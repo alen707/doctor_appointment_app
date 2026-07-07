@@ -1,5 +1,5 @@
 import 'package:docter_appointment_app/View/Authentication/componets/input_button.dart';
-import 'package:docter_appointment_app/View/Authentication/componets/input_feild.dart';
+import 'package:docter_appointment_app/View/Authentication/componets/input_field.dart';
 import 'package:docter_appointment_app/View/Authentication/signin_screen.dart';
 import 'package:docter_appointment_app/l10n/app_localizations.dart';
 
@@ -13,7 +13,8 @@ class NewPasswordScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<NewPasswordScreen> {
-  final TextEditingController createnewpasswordcontroller = TextEditingController();
+  final TextEditingController createnewpasswordcontroller =
+      TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -69,12 +70,12 @@ class _LoginScreenState extends State<NewPasswordScreen> {
 
               SizedBox(height: 15),
 
-              InputFeild(
+              InputField(
                 hind: AppLocalizations.of(context)!.password,
                 icon: Icons.password,
                 controller: createnewpasswordcontroller,
               ),
-              InputFeild(
+              InputField(
                 hind: AppLocalizations.of(context)!.conFormPassword,
                 icon: Icons.password,
                 controller: createnewpasswordcontroller,

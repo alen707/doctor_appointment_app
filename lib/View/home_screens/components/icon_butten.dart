@@ -1,19 +1,13 @@
 import 'package:flutter/material.dart';
 
 class IconButten extends StatelessWidget {
-  final AssetImage ico;
+  final AssetImage icon;
   final String text;
-  const IconButten({
-    
-    super.key,
-    required this.ico,
-    required this.text
-  });
+  const IconButten({super.key, required this.icon, required this.text});
 
   @override
   Widget build(BuildContext context) {
     return Column(
-      
       children: [
         Expanded(
           child: Padding(
@@ -21,20 +15,15 @@ class IconButten extends StatelessWidget {
             child: Container(
               width: double.infinity,
               //height: double.infinity,
-               //width: 50,
-               height: 50,
-              
-              
-              decoration: 
-               BoxDecoration(
+              //width: 50,
+              height: 50,
+
+              decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
-                
-                image: DecorationImage(image: ico,
-               fit: BoxFit.cover
-               )
-                
-               )
+
+                image: DecorationImage(image: icon, fit: BoxFit.cover),
               ),
+            ),
           ),
         ),
         SingleChildScrollView(
@@ -42,13 +31,10 @@ class IconButten extends StatelessWidget {
           child: SizedBox(
             width: 55,
             height: 18,
-            
-            child: Text(text,
-            style: TextStyle(
-              fontSize: 12
-            ),),
+
+            child: Text(text, style: TextStyle(fontSize: 12)),
           ),
-        )
+        ),
       ],
     );
   }

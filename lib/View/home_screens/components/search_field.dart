@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 
-class SearchFeild extends StatelessWidget {
+class SearchField extends StatelessWidget {
   final String title;
-  const SearchFeild({
-    super.key,
-    required this.title
-  });
+  const SearchField({super.key, required this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -19,15 +16,8 @@ class SearchFeild extends StatelessWidget {
           ),
           fillColor: Colors.grey.shade300,
           filled: true,
-          hint: Text(
-            title,
-            style: TextStyle(color: Colors.grey, fontSize: 14),
-          ),
-          prefixIcon: Icon(
-            Icons.search,
-            color: Colors.grey,
-            size: 14,
-          ),
+          hint: Text(title, style: TextStyle(color: Colors.grey, fontSize: 14)),
+          prefixIcon: Icon(Icons.search, color: Colors.grey, size: 14),
           border: OutlineInputBorder(
             //borderRadius: BorderRadius.circular(20),
           ),
@@ -36,4 +26,3 @@ class SearchFeild extends StatelessWidget {
     );
   }
 }
-

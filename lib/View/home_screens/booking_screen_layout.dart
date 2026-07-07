@@ -1,6 +1,5 @@
 import 'package:docter_appointment_app/View/home_screens/booking_completed_screen.dart';
 import 'package:docter_appointment_app/View/home_screens/booking_upcoming_screen.dart';
-import 'package:docter_appointment_app/View/home_screens/componets/docter_card.dart';
 import 'package:docter_appointment_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
@@ -19,36 +18,34 @@ class _BookingScreenLayoutState extends State<BookingScreenLayout> {
       child: Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
-          
+
           backgroundColor: Colors.white,
-          
+
           title: Center(
-            child: Text(AppLocalizations.of(context)!.mybookings,
-            style: TextStyle(
-              fontSize: 20,
-              color: Colors.black,
-              fontWeight: FontWeight.bold
-            ),
+            child: Text(
+              AppLocalizations.of(context)!.mybookings,
+              style: TextStyle(
+                fontSize: 20,
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
           bottom: TabBar(
-            
-            
             tabs: [
-            Tab(text: AppLocalizations.of(context)!.upcoming,),
-            Tab(text: AppLocalizations.of(context)!.completed,),
-            Tab(text: AppLocalizations.of(context)!.canceled,)
-          ]),
-      
-          
+              Tab(text: AppLocalizations.of(context)!.upcoming),
+              Tab(text: AppLocalizations.of(context)!.completed),
+              Tab(text: AppLocalizations.of(context)!.canceled),
+            ],
+          ),
         ),
-        body:  const TabBarView(
-              children: [
-                BookingUpcomingScreen(),
-                BookingCompletedScreen(),
-                Center(child: Text(' Screen')),
-              ],
-            ),
+        body: const TabBarView(
+          children: [
+            BookingUpcomingScreen(),
+            BookingCompletedScreen(),
+            Center(child: Text(' Screen')),
+          ],
+        ),
       ),
     );
   }

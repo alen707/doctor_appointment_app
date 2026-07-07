@@ -1,20 +1,14 @@
 import 'package:docter_appointment_app/View/Authentication/componets/input_button.dart';
-import 'package:docter_appointment_app/View/Authentication/componets/input_feild.dart';
-import 'package:docter_appointment_app/View/Authentication/componets/normal_textfeild.dart';
-import 'package:docter_appointment_app/View/home_screens/booking_screen_layout.dart';
+import 'package:docter_appointment_app/View/Authentication/componets/input_field.dart';
+import 'package:docter_appointment_app/View/Authentication/componets/normal_textfield.dart';
 import 'package:docter_appointment_app/View/home_screens/home_layout.dart';
-import 'package:docter_appointment_app/View/home_screens/home_screen.dart';
-import 'package:docter_appointment_app/View/home_screens/profile_screen.dart';
 import 'package:docter_appointment_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class EditProfileScreen extends StatefulWidget {
   final String? from;
-  const EditProfileScreen({
-    super.key,
-    required this.from
-  });
+  const EditProfileScreen({super.key, required this.from});
 
   @override
   State<EditProfileScreen> createState() => _EditProfileScreenState();
@@ -23,7 +17,6 @@ class EditProfileScreen extends StatefulWidget {
 class _EditProfileScreenState extends State<EditProfileScreen> {
   String? selectedValue;
   bool navi = true;
- 
 
   final TextEditingController emailcontroller = TextEditingController();
   @override
@@ -80,16 +73,16 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   ],
                 ),
 
-                NormalTextfeild(
+                NormalTextfield(
                   hind: AppLocalizations.of(context)!.editProfileName,
                 ),
-                NormalTextfeild(
+                NormalTextfield(
                   hind: AppLocalizations.of(context)!.editProfileName,
                 ),
-                NormalTextfeild(
+                NormalTextfield(
                   hind: AppLocalizations.of(context)!.editProfileEmail,
                 ),
-                InputFeild(
+                InputField(
                   hind: AppLocalizations.of(context)!.editProfileDpb,
                   icon: Icons.calendar_month,
                   controller: emailcontroller,
@@ -171,20 +164,25 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       ),
                     );
 
-                    Future.delayed(Duration(seconds: 3),(){
+                    Future.delayed(Duration(seconds: 3), () {
+                      //Navigator.pop(context);
 
-                       //Navigator.pop(context);
-                     
-                      if(widget.from=="profile"){
-                        
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => HomeLayout(initialIndex: 3,),));
+                      if (widget.from == "profile") {
+                        // ignore: use_build_context_synchronously
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => HomeLayout(initialIndex: 3),
+                          ),
+                        );
+                      } else {
+                        // ignore: use_build_context_synchronously
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => HomeLayout()),
+                        );
                       }
-                      else{
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => HomeLayout(),));
-                      }
-
-                    }
-                    );
+                    });
                   },
                 ),
               ],

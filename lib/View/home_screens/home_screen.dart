@@ -1,18 +1,14 @@
 import 'package:docter_appointment_app/Modal/hospital_list_modal.dart';
 import 'package:docter_appointment_app/Service/hospital_list_api.dart';
-import 'package:docter_appointment_app/View/home_screens/componets/home_title.dart';
-import 'package:docter_appointment_app/View/home_screens/componets/icon_butten.dart';
-import 'package:docter_appointment_app/View/home_screens/componets/medical_centers.dart';
-import 'package:docter_appointment_app/View/home_screens/componets/search_feild.dart';
-import 'package:docter_appointment_app/View/home_screens/docter_search_screen.dart';
-import 'package:docter_appointment_app/ViewModal/langage_sheredpteference.dart';
+import 'package:docter_appointment_app/View/home_screens/components/home_title.dart';
+import 'package:docter_appointment_app/View/home_screens/components/icon_butten.dart';
+import 'package:docter_appointment_app/View/home_screens/components/medical_centers.dart';
+import 'package:docter_appointment_app/View/home_screens/doctor_search_screen.dart';
 import 'package:docter_appointment_app/ViewModal/language_provider.dart';
 import 'package:docter_appointment_app/l10n/app_localizations.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
 import 'package:provider/provider.dart';
-import 'package:docter_appointment_app/l10n/app_localizations.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -106,7 +102,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => DocterSearchScreen(),
+                          builder: (context) => DoctorSearchScreen(),
                         ),
                       );
                     },
@@ -221,39 +217,43 @@ class _MyHomePageState extends State<MyHomePage> {
                           childAspectRatio: 1.0,
                           children: [
                             IconButten(
-                              ico: AssetImage(
+                              icon: AssetImage(
                                 "assets/images/home_dentistry.png",
                               ),
                               text: AppLocalizations.of(context)!.dentistry,
                             ),
                             IconButten(
-                              ico: AssetImage("assets/images/home_cardio.png"),
+                              icon: AssetImage("assets/images/home_cardio.png"),
                               text: AppLocalizations.of(context)!.cardio,
                             ),
                             IconButten(
-                              ico: AssetImage("assets/images/home_pulmono.png"),
+                              icon: AssetImage(
+                                "assets/images/home_pulmono.png",
+                              ),
                               text: AppLocalizations.of(context)!.pulmono,
                             ),
                             IconButten(
-                              ico: AssetImage("assets/images/home_general.png"),
+                              icon: AssetImage(
+                                "assets/images/home_general.png",
+                              ),
                               text: AppLocalizations.of(context)!.general,
                             ),
                             IconButten(
-                              ico: AssetImage(
+                              icon: AssetImage(
                                 "assets/images/home_newrology.png",
                               ),
                               text: AppLocalizations.of(context)!.neurology,
                             ),
                             IconButten(
-                              ico: AssetImage("assets/images/home_gastro.png"),
+                              icon: AssetImage("assets/images/home_gastro.png"),
                               text: AppLocalizations.of(context)!.gastroen,
                             ),
                             IconButten(
-                              ico: AssetImage("assets/images/home_labora.png"),
+                              icon: AssetImage("assets/images/home_labora.png"),
                               text: AppLocalizations.of(context)!.laborato,
                             ),
                             IconButten(
-                              ico: AssetImage(
+                              icon: AssetImage(
                                 "assets/images/home_vaccinat.png",
                               ),
                               text: AppLocalizations.of(context)!.vaccinat,
@@ -273,24 +273,24 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
 
             SizedBox(
-                height: 252,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  //shrinkWrap: true,
-                  itemCount: hospitallist.length,
-                  itemBuilder: (context, index) => MadicalCenters(
-                   wid: 300,
-                    location:
-                        "${hospitallist[index].address}, ${hospitallist[index].city}",
-                    name: hospitallist[index].name,
-                    rating: hospitallist[index].rating,
-                    reviewcount: hospitallist[index].reviews,
-                    distance: hospitallist[index].distance,
-                    time: hospitallist[index].duration,
-                    type: hospitallist[index].type,
-                  ),
+              height: 252,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                //shrinkWrap: true,
+                itemCount: hospitallist.length,
+                itemBuilder: (context, index) => MedicalCenters(
+                  width: 300,
+                  location:
+                      "${hospitallist[index].address}, ${hospitallist[index].city}",
+                  name: hospitallist[index].name,
+                  rating: hospitallist[index].rating,
+                  reviewcount: hospitallist[index].reviews,
+                  distance: hospitallist[index].distance,
+                  time: hospitallist[index].duration,
+                  type: hospitallist[index].type,
                 ),
               ),
+            ),
           ],
         ),
       ),

@@ -1,12 +1,8 @@
-import 'dart:math';
-
-import 'package:docter_appointment_app/Service/sign_in_api.dart';
 import 'package:docter_appointment_app/View/Authentication/componets/input_button.dart';
-import 'package:docter_appointment_app/View/Authentication/componets/input_feild.dart';
+import 'package:docter_appointment_app/View/Authentication/componets/input_field.dart';
 import 'package:docter_appointment_app/View/Authentication/componets/other_login.dart';
 import 'package:docter_appointment_app/View/Authentication/forget_password_screen.dart';
 import 'package:docter_appointment_app/View/Authentication/login_screen.dart';
-import 'package:docter_appointment_app/View/home_screens/home_screen.dart';
 import 'package:docter_appointment_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
@@ -75,12 +71,12 @@ class _LoginScreenState extends State<SignUpScreen> {
 
                 SizedBox(height: 15),
 
-                InputFeild(
+                InputField(
                   hind: AppLocalizations.of(context)!.yourMail,
                   icon: Icons.email,
                   controller: emailcontroller,
                 ),
-                InputFeild(
+                InputField(
                   hind: AppLocalizations.of(context)!.password,
                   icon: Icons.password,
                   controller: passwordcontroller,
@@ -91,22 +87,12 @@ class _LoginScreenState extends State<SignUpScreen> {
                   child: InputButton(
                     inputText: AppLocalizations.of(context)!.signin,
 
-                    nextpage: () async{
+                    nextpage: () async {
+                      // final data = await SignInApi().signInApi(context,emailcontroller.text,passwordcontroller.text
 
-                      print("butten press");
-                       print("butten press");
-                        print("butten press");
-                         print("butten press");
-                          print("butten press");
-                    final data = await SignInApi().signInApi(context,emailcontroller.text,passwordcontroller.text
-                    
-                    );
-                       print("API completed");
-                        print("API completed");
-                         print("API completed");
-                          print("API completed");
+                      // );
                     },
-                    //nextpage: () => 
+                    //nextpage: () =>
                     // Navigator.of(context).push(
                     //   MaterialPageRoute(
                     //     builder: (context) => const MyHomePage(),

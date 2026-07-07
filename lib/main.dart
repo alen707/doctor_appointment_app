@@ -1,22 +1,5 @@
-import 'package:docter_appointment_app/View/Authentication/edit_profile_screen.dart';
-import 'package:docter_appointment_app/View/Authentication/forget_password_screen.dart';
-import 'package:docter_appointment_app/View/Authentication/login_screen.dart';
-import 'package:docter_appointment_app/View/Authentication/new_password_screen.dart';
-import 'package:docter_appointment_app/View/Authentication/otp_screen.dart';
-import 'package:docter_appointment_app/View/Authentication/signin_screen.dart';
-import 'package:docter_appointment_app/View/SkipPages/skip_screen2.dart';
-import 'package:docter_appointment_app/View/SkipPages/skip_screen3.dart';
+
 import 'package:docter_appointment_app/View/first_loading_screen.dart';
-import 'package:docter_appointment_app/View/home_screens/book_appoinment_screen.dart';
-import 'package:docter_appointment_app/View/home_screens/componets/docter_card.dart';
-import 'package:docter_appointment_app/View/home_screens/docter_details.dart';
-import 'package:docter_appointment_app/View/home_screens/docter_search_screen.dart';
-import 'package:docter_appointment_app/View/home_screens/favorites_layout.dart';
-import 'package:docter_appointment_app/View/home_screens/home_layout.dart';
-import 'package:docter_appointment_app/View/home_screens/home_screen.dart';
-import 'package:docter_appointment_app/View/SkipPages/skip_screen1.dart';
-import 'package:docter_appointment_app/View/home_screens/location_screen.dart';
-import 'package:docter_appointment_app/ViewModal/langage_sheredpteference.dart';
 import 'package:docter_appointment_app/ViewModal/language_provider.dart';
 import 'package:docter_appointment_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';

@@ -41,7 +41,7 @@ class _LoginScreenState extends State<OtpScreen> {
                     style: TextStyle(fontSize: 25, color: Colors.grey),
                   ),
                   Text(
-                     AppLocalizations.of(context)!.pal,
+                    AppLocalizations.of(context)!.pal,
                     style: TextStyle(fontSize: 25, color: Colors.black),
                   ),
                 ],
@@ -50,7 +50,7 @@ class _LoginScreenState extends State<OtpScreen> {
               SizedBox(height: 30),
 
               Text(
-                 AppLocalizations.of(context)!.verifyCode,
+                AppLocalizations.of(context)!.verifyCode,
                 style: TextStyle(
                   fontSize: 25,
                   color: Colors.black,
@@ -83,11 +83,12 @@ class _LoginScreenState extends State<OtpScreen> {
 
               Padding(
                 padding: const EdgeInsets.only(top: 20),
-                child: InputButton(inputText:AppLocalizations.of(context)!.verify,
-                nextpage: ()=> Navigator.of(context).push(
+                child: InputButton(
+                  inputText: AppLocalizations.of(context)!.verify,
+                  nextpage: () => Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (context)=> const NewPasswordScreen()
-                      )
+                      builder: (context) => const NewPasswordScreen(),
+                    ),
                   ),
                 ),
               ),

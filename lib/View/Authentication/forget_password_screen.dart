@@ -1,5 +1,5 @@
 import 'package:docter_appointment_app/View/Authentication/componets/input_button.dart';
-import 'package:docter_appointment_app/View/Authentication/componets/input_feild.dart';
+import 'package:docter_appointment_app/View/Authentication/componets/input_field.dart';
 import 'package:docter_appointment_app/View/Authentication/otp_screen.dart';
 import 'package:docter_appointment_app/l10n/app_localizations.dart';
 
@@ -33,7 +33,7 @@ class _LoginScreenState extends State<ForgetPasswordScreen> {
             children: [
               Image.asset("assets/images/logo.png"),
               SizedBox(height: 10),
-          
+
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -47,9 +47,9 @@ class _LoginScreenState extends State<ForgetPasswordScreen> {
                   ),
                 ],
               ),
-          
+
               SizedBox(height: 30),
-          
+
               Text(
                 AppLocalizations.of(context)!.forgetPassword,
                 style: TextStyle(
@@ -58,36 +58,32 @@ class _LoginScreenState extends State<ForgetPasswordScreen> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-          
+
               SizedBox(height: 10),
-          
+
               Text(
                 AppLocalizations.of(context)!.forgotPasswordDiscription,
                 style: TextStyle(fontSize: 15, color: Colors.grey),
-                textAlign: TextAlign.center
+                textAlign: TextAlign.center,
               ),
-          
-              SizedBox(height: 15,),
-        
-              InputFeild(hind:AppLocalizations.of(context)!.yourMail,icon: Icons.email,controller:forgetPassword ,),
-          
+
+              SizedBox(height: 15),
+
+              InputField(
+                hind: AppLocalizations.of(context)!.yourMail,
+                icon: Icons.email,
+                controller: forgetPassword,
+              ),
+
               Padding(
-                padding: const EdgeInsets.only(
-                  top: 20
-                ),
+                padding: const EdgeInsets.only(top: 20),
                 child: InputButton(
                   inputText: AppLocalizations.of(context)!.sendCode,
-                  nextpage:()=> Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context)=> const OtpScreen()
-                      )
+                  nextpage: () => Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => const OtpScreen()),
                   ),
-                  ),
+                ),
               ),
-              
-          
-              
-          
             ],
           ),
         ),
@@ -95,4 +91,3 @@ class _LoginScreenState extends State<ForgetPasswordScreen> {
     );
   }
 }
-

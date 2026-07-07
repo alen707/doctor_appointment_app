@@ -1,19 +1,28 @@
 import 'package:flutter/material.dart';
 
-class NormalTextfeild extends StatefulWidget {
+class InputField extends StatefulWidget {
   final String hind;
-  const NormalTextfeild({super.key, required this.hind});
+  final IconData icon;
+  // ignore: prefer_typing_uninitialized_variables, strict_top_level_inference
+  final controller;
+  const InputField({
+    super.key,
+    required this.hind,
+    required this.icon,
+    required this.controller,
+  });
 
   @override
-  State<NormalTextfeild> createState() => _InputFeildState();
+  State<InputField> createState() => _InputFeildState();
 }
 
-class _InputFeildState extends State<NormalTextfeild> {
+class _InputFeildState extends State<InputField> {
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(top: 20),
       child: TextField(
+        controller: widget.controller,
         decoration: InputDecoration(
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
@@ -26,6 +35,7 @@ class _InputFeildState extends State<NormalTextfeild> {
 
           hintText: widget.hind,
           hintStyle: TextStyle(color: Colors.grey),
+          prefixIcon: Icon(widget.icon),
           fillColor: Colors.grey.shade50,
           filled: true,
         ),

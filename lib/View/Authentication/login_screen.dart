@@ -1,5 +1,5 @@
 import 'package:docter_appointment_app/View/Authentication/componets/input_button.dart';
-import 'package:docter_appointment_app/View/Authentication/componets/input_feild.dart';
+import 'package:docter_appointment_app/View/Authentication/componets/input_field.dart';
 import 'package:docter_appointment_app/View/Authentication/componets/other_login.dart';
 import 'package:docter_appointment_app/View/Authentication/edit_profile_screen.dart';
 import 'package:docter_appointment_app/View/Authentication/signin_screen.dart';
@@ -35,7 +35,7 @@ class _LoginScreenState extends State<LoginScreen> {
               children: [
                 Image.asset("assets/images/logo.png"),
                 SizedBox(height: 10),
-            
+
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -49,9 +49,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ],
                 ),
-            
+
                 SizedBox(height: 30),
-            
+
                 Text(
                   AppLocalizations.of(context)!.createAcount,
                   style: TextStyle(
@@ -60,34 +60,46 @@ class _LoginScreenState extends State<LoginScreen> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-            
+
                 SizedBox(height: 10),
-            
+
                 Text(
                   AppLocalizations.of(context)!.loginDiscription,
                   style: TextStyle(fontSize: 15, color: Colors.grey),
                 ),
-            
-                SizedBox(height: 15,),
-            
-                InputFeild(hind: AppLocalizations.of(context)!.youerName,icon:Icons.person,controller: emailcontroller,),
-                InputFeild(hind: AppLocalizations.of(context)!.yourMail,icon: Icons.email,controller: emailcontroller,),
-                InputFeild(hind: AppLocalizations.of(context)!.password,icon: Icons.password,controller: emailcontroller,),
-            
+
+                SizedBox(height: 15),
+
+                InputField(
+                  hind: AppLocalizations.of(context)!.youerName,
+                  icon: Icons.person,
+                  controller: emailcontroller,
+                ),
+                InputField(
+                  hind: AppLocalizations.of(context)!.yourMail,
+                  icon: Icons.email,
+                  controller: emailcontroller,
+                ),
+                InputField(
+                  hind: AppLocalizations.of(context)!.password,
+                  icon: Icons.password,
+                  controller: emailcontroller,
+                ),
+
                 Padding(
-                  padding: const EdgeInsets.only(
-                    top: 20
-                  ),
-                  child: InputButton(inputText: AppLocalizations.of(context)!.createAcount,
-                  nextpage: ()=> Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context)=> const EditProfileScreen(from: "login",)
-                      )
-                  ),
+                  padding: const EdgeInsets.only(top: 20),
+                  child: InputButton(
+                    inputText: AppLocalizations.of(context)!.createAcount,
+                    nextpage: () => Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            const EditProfileScreen(from: "login"),
+                      ),
+                    ),
                   ),
                 ),
-                SizedBox(height: 20,),
-            
+                SizedBox(height: 20),
+
                 Row(
                   children: [
                     Expanded(
@@ -100,14 +112,12 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                     ),
-            
-                    Text("or",
-                    style:TextStyle(
-                      fontSize: 20,
-                      color: Colors.grey
-                    ) ,
+
+                    Text(
+                      "or",
+                      style: TextStyle(fontSize: 20, color: Colors.grey),
                     ),
-            
+
                     Expanded(
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
@@ -120,37 +130,40 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ],
                 ),
-            
-                SizedBox(height: 20,),
-            
-                OtherLogin(logo: "assets/images/google_logo.png",platform: AppLocalizations.of(context)!.google,),
-                SizedBox(height: 20,),
-                OtherLogin(logo: "assets/images/facebook_logo.png",platform: AppLocalizations.of(context)!.facebook,),
-            
-                SizedBox(height: 20,),
-            
+
+                SizedBox(height: 20),
+
+                OtherLogin(
+                  logo: "assets/images/google_logo.png",
+                  platform: AppLocalizations.of(context)!.google,
+                ),
+                SizedBox(height: 20),
+                OtherLogin(
+                  logo: "assets/images/facebook_logo.png",
+                  platform: AppLocalizations.of(context)!.facebook,
+                ),
+
+                SizedBox(height: 20),
+
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(AppLocalizations.of(context)!.signinDiscription),
                     TextButton(
-                      onPressed: (){
-                         Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context)=> const SignUpScreen()
-                      )
-                  );
-                      }, 
-                      child:Text(AppLocalizations.of(context)!.signin,
-                      style: TextStyle(
-                        color: Colors.blue
+                      onPressed: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => const SignUpScreen(),
+                          ),
+                        );
+                      },
+                      child: Text(
+                        AppLocalizations.of(context)!.signin,
+                        style: TextStyle(color: Colors.blue),
                       ),
-                      )
-                      )
+                    ),
                   ],
-                )
-            
-            
+                ),
               ],
             ),
           ),
@@ -159,4 +172,3 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 }
-

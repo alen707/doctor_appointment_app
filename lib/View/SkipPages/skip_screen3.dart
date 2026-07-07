@@ -1,6 +1,5 @@
-import 'package:docter_appointment_app/View/Authentication/login_screen.dart';
 import 'package:docter_appointment_app/View/Authentication/signin_screen.dart';
-import 'package:docter_appointment_app/ViewModal/skippage_sharedprefarance.dart';
+import 'package:docter_appointment_app/ViewModal/skippage_sharedpreferance.dart';
 import 'package:docter_appointment_app/l10n/app_localizations.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
@@ -13,13 +12,14 @@ class SkipScreenC extends StatefulWidget {
 }
 
 class _SkipScreenState extends State<SkipScreenC> {
-    Future changeStatus()async{
-    await SkippageSharedprefarance.saveStatus(false);
+  Future changeStatus() async {
+    await SkippageSharedpreferance.saveStatus(false);
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
+      body: SizedBox(
         width: double.infinity,
         height: double.infinity,
         //color: Colors.blueAccent,
@@ -60,9 +60,9 @@ class _SkipScreenState extends State<SkipScreenC> {
                         ),
                       ),
                       SizedBox(height: 10),
-      
+
                       Text(
-                       AppLocalizations.of(context)!.screenCdiscription,
+                        AppLocalizations.of(context)!.screenCdiscription,
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 14,
@@ -72,7 +72,7 @@ class _SkipScreenState extends State<SkipScreenC> {
                         ),
                       ),
                       SizedBox(height: 10),
-      
+
                       SizedBox(
                         width: double.infinity,
                         child: ElevatedButton(
@@ -80,8 +80,8 @@ class _SkipScreenState extends State<SkipScreenC> {
                             changeStatus();
                             Navigator.of(context).push(
                               MaterialPageRoute<void>(
-                                builder:(context) =>  SignUpScreen()
-                                 )
+                                builder: (context) => SignUpScreen(),
+                              ),
                             );
                           },
                           style: ElevatedButton.styleFrom(
@@ -103,15 +103,20 @@ class _SkipScreenState extends State<SkipScreenC> {
                           activeShape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10.0),
                           ),
-                          activeColor:Colors.black 
+                          activeColor: Colors.black,
                         ),
                       ),
-      
+
                       SizedBox(height: 10),
                       InkWell(
                         onTap: () {
                           changeStatus();
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => SignUpScreen(),));
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => SignUpScreen(),
+                            ),
+                          );
                         },
                         child: Text(
                           AppLocalizations.of(context)!.skip,
@@ -125,7 +130,7 @@ class _SkipScreenState extends State<SkipScreenC> {
                     ],
                   ),
                 ),
-      
+
                 //height: double.infinity,
               ),
             ),

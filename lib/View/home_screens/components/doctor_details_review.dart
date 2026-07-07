@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class DocterDetailsReviews extends StatelessWidget {
+class DoctorDetailsReviews extends StatelessWidget {
   final String name;
   final String reviews;
   final double rating;
-  const DocterDetailsReviews({
+  const DoctorDetailsReviews({
     super.key,
     required this.name,
     required this.reviews,
@@ -13,7 +13,6 @@ class DocterDetailsReviews extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
     return Column(
       children: [
         Row(
@@ -49,10 +48,18 @@ class DocterDetailsReviews extends StatelessWidget {
                       children: [
                         ...List.generate(
                           rating.floor(),
-                          (_) => const Icon(Icons.star, color: Colors.amber,size: 15),
+                          (_) => const Icon(
+                            Icons.star,
+                            color: Colors.amber,
+                            size: 15,
+                          ),
                         ),
                         if (rating % 1 == 0.5)
-                          const Icon(Icons.star_half, color: Colors.amber,size: 15),
+                          const Icon(
+                            Icons.star_half,
+                            color: Colors.amber,
+                            size: 15,
+                          ),
                       ],
                     ),
 
@@ -68,9 +75,9 @@ class DocterDetailsReviews extends StatelessWidget {
           ],
         ),
 
-         SizedBox(height: 10),
+        SizedBox(height: 10),
 
-         Text(reviews, style: TextStyle(fontSize: 14, color: Colors.grey)),
+        Text(reviews, style: TextStyle(fontSize: 14, color: Colors.grey)),
       ],
     );
   }

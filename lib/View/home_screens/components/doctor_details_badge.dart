@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
-class DocterDetailsBadge extends StatelessWidget {
+class DoctorDetailsBadge extends StatelessWidget {
   final AssetImage icon;
   final String data;
   final String title;
-  const DocterDetailsBadge({
+  const DoctorDetailsBadge({
     super.key,
     required this.data,
     required this.icon,
-    required this.title
+    required this.title,
   });
 
   @override
@@ -22,17 +22,18 @@ class DocterDetailsBadge extends StatelessWidget {
             color: Colors.grey.shade200,
             shape: BoxShape.circle,
           ),
-          child: ImageIcon(
-            icon,
-          ),
+          child: ImageIcon(icon),
         ),
         Row(
           children: [
-            Text(data,style: TextStyle(
-              color: Colors.black,
-              fontSize: 14,
-              fontWeight: FontWeight.bold
-            ),),
+            Text(
+              data,
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 14,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
             //  Text("+",style: TextStyle(
             //   color: Colors.black,
             //   fontSize: 14,
@@ -40,10 +41,7 @@ class DocterDetailsBadge extends StatelessWidget {
             // ),),
           ],
         ),
-        Text(title,style: TextStyle(
-          color: Colors.grey,
-          fontSize: 14
-        ),)
+        Text(title, style: TextStyle(color: Colors.grey, fontSize: 14)),
       ],
     );
   }

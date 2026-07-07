@@ -1,7 +1,7 @@
 import 'package:docter_appointment_app/Modal/hospital_list_modal.dart';
 import 'package:docter_appointment_app/Service/hospital_list_api.dart';
-import 'package:docter_appointment_app/View/home_screens/componets/medical_centers.dart';
-import 'package:docter_appointment_app/View/home_screens/componets/search_feild.dart';
+import 'package:docter_appointment_app/View/home_screens/components/medical_centers.dart';
+import 'package:docter_appointment_app/View/home_screens/components/search_field.dart';
 import 'package:docter_appointment_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -51,7 +51,7 @@ class _LocationScreenState extends State<LocationScreen> {
               left: 20, // Distance from the left edge
               right:
                   20, // Distance from the right edge -> This forces it to stretch responsively!
-              child: SearchFeild(
+              child: SearchField(
                 title: AppLocalizations.of(context)!.searchdochos,
               ),
             ),
@@ -66,8 +66,8 @@ class _LocationScreenState extends State<LocationScreen> {
                   scrollDirection: Axis.horizontal,
                   //shrinkWrap: true,
                   itemCount: hospitallist.length,
-                  itemBuilder: (context, index) => MadicalCenters(
-                   wid: 300,
+                  itemBuilder: (context, index) => MedicalCenters(
+                    width: 300,
                     location:
                         "${hospitallist[index].address}, ${hospitallist[index].city}",
                     name: hospitallist[index].name,
