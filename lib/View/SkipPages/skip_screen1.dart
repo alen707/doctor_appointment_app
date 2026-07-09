@@ -1,4 +1,5 @@
 import 'package:docter_appointment_app/View/Authentication/signin_screen.dart';
+import 'package:docter_appointment_app/View/SkipPages/skip_pageview.dart';
 import 'package:docter_appointment_app/View/SkipPages/skip_screen2.dart';
 import 'package:docter_appointment_app/ViewModal/skippage_sharedpreferance.dart';
 import 'package:docter_appointment_app/l10n/app_localizations.dart';
@@ -80,7 +81,7 @@ class _SkipScreenState extends State<SkipScreenA> {
                           onPressed: () {
                             Navigator.of(context).push(
                               MaterialPageRoute(
-                                builder: (context) => SkipScreenB(),
+                                builder: (context) => SkipPageview(pageindex: 1,),
                               ),
                             );
                           },
