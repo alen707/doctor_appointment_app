@@ -170,6 +170,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       if (widget.from == "profile") {
                         // ignore: use_build_context_synchronously
                         Navigator.push(
+                          // ignore: use_build_context_synchronously
                           context,
                           MaterialPageRoute(
                             builder: (context) => HomeLayout(initialIndex: 3),
@@ -178,6 +179,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       } else {
                         // ignore: use_build_context_synchronously
                         Navigator.push(
+                          // ignore: use_build_context_synchronously
                           context,
                           MaterialPageRoute(builder: (context) => HomeLayout()),
                         );
