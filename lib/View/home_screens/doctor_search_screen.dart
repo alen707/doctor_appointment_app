@@ -16,7 +16,9 @@ class DoctorSearchScreen extends StatefulWidget {
 
 class _DocterSearchScreenState extends State<DoctorSearchScreen> {
   final DocterListApi docterDetailApi = DocterListApi();
-  List<DocterListModal> docterlist = [];
+  List<DocterListModal> doctorlist = [];
+  List<DocterListModal> searchDoctors = [];
+  List<DocterListModal> filteredDoctors = [];
   int selectedindex = 0;
   @override
   void initState() {
@@ -25,8 +27,58 @@ class _DocterSearchScreenState extends State<DoctorSearchScreen> {
   }
 
   Future<void> loadDoctor() async {
-    docterlist = await docterDetailApi.getDocterListApi();
+    doctorlist = await docterDetailApi.getDocterListApi();
+    searchDoctors = List.from(doctorlist);
+    filteredDoctors = List.from(doctorlist);
+
     setState(() {});
+  }
+
+  void searchDoctor(String value) {
+    setState(() {
+      if (value.isEmpty) {
+        searchDoctors = List.from(filteredDoctors);
+      } else {
+        searchDoctors = filteredDoctors.where((doctor) {
+          return doctor.name.toLowerCase().contains(value.toLowerCase()) ||
+              doctor.specialization.toLowerCase().contains(
+                value.toLowerCase(),
+              ) ||
+              doctor.hospital.toLowerCase().contains(value.toLowerCase());
+        }).toList();
+      }
+    });
+  }
+
+  void filterDoctor(int index) {
+    setState(() {
+      selectedindex = index;
+
+      if (index == 0) {
+        filteredDoctors = List.from(doctorlist);
+      } else if (index == 1) {
+        filteredDoctors = doctorlist.where((doctor) {
+          return doctor.specialization.toLowerCase() == "dentistry";
+        }).toList();
+      } else if (index == 2) {
+        filteredDoctors = doctorlist.where((doctor) {
+          return doctor.specialization.toLowerCase() == "cardiology";
+        }).toList();
+      } else if (index == 3) {
+        filteredDoctors = doctorlist.where((doctor) {
+          return doctor.specialization.toLowerCase() == "pulmonology";
+        }).toList();
+      } else if (index == 4) {
+        filteredDoctors = doctorlist.where((doctor) {
+          return doctor.specialization.toLowerCase() == "general";
+        }).toList();
+      } else if (index == 5) {
+        filteredDoctors = doctorlist.where((doctor) {
+          return doctor.specialization.toLowerCase() == "neurology";
+        }).toList();
+      }
+      searchDoctors = List.from(filteredDoctors);
+    });
   }
 
   @override
@@ -72,7 +124,10 @@ class _DocterSearchScreenState extends State<DoctorSearchScreen> {
                   SizedBox(width: 30),
                 ],
               ),
-              SearchField(title: AppLocalizations.of(context)!.searchdoc),
+              SearchField(
+                title: AppLocalizations.of(context)!.searchdoc,
+                onChanged: searchDoctor,
+              ),
 
               SizedBox(height: 15),
 
@@ -87,9 +142,7 @@ class _DocterSearchScreenState extends State<DoctorSearchScreen> {
                       title: filters[index],
                       index: index,
                       ontap: () {
-                        setState(() {
-                          selectedindex = index;
-                        });
+                        filterDoctor(index);
                       },
                       selectedindex: selectedindex,
                     );
@@ -122,16 +175,16 @@ class _DocterSearchScreenState extends State<DoctorSearchScreen> {
               Expanded(
                 child: ListView.builder(
                   shrinkWrap: true,
-                  itemCount: docterlist.length,
+                  itemCount: searchDoctors.length,
                   itemBuilder: (context, index) {
                     return Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: DoctorListData(
-                        name: docterlist[index].name,
-                        categary: docterlist[index].specialization,
-                        location: docterlist[index].hospital,
-                        rating: docterlist[index].rating,
-                        reviewcount: docterlist[index].reviews,
+                        name: searchDoctors[index].name,
+                        categary: searchDoctors[index].specialization,
+                        location: searchDoctors[index].hospital,
+                        rating: searchDoctors[index].rating,
+                        reviewcount: searchDoctors[index].reviews,
 
                         ontap: () {
                           Navigator.push(

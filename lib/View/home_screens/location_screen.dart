@@ -53,6 +53,9 @@ class _LocationScreenState extends State<LocationScreen> {
                   20, // Distance from the right edge -> This forces it to stretch responsively!
               child: SearchField(
                 title: AppLocalizations.of(context)!.searchdochos,
+                onChanged: (value) {
+                  
+                },
               ),
             ),
 

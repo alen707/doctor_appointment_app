@@ -1,6 +1,5 @@
 import 'package:docter_appointment_app/View/Authentication/signin_screen.dart';
 import 'package:docter_appointment_app/View/SkipPages/skip_pageview.dart';
-import 'package:docter_appointment_app/View/SkipPages/skip_screen1.dart';
 import 'package:docter_appointment_app/ViewModal/skippage_sharedpreferance.dart';
 import 'package:flutter/material.dart';
 
