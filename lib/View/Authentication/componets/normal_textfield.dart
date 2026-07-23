@@ -11,24 +11,21 @@ class NormalTextfield extends StatefulWidget {
 class _InputFeildState extends State<NormalTextfield> {
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 20),
-      child: TextField(
-        decoration: InputDecoration(
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
-            borderSide: const BorderSide(color: Colors.grey, width: 2),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
-            borderSide: const BorderSide(color: Colors.black, width: 2),
-          ),
-
-          hintText: widget.hind,
-          hintStyle: TextStyle(color: Colors.grey),
-          fillColor: Colors.grey.shade50,
-          filled: true,
+    return TextField(
+      decoration: InputDecoration(
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: const BorderSide(color: Colors.grey, width: 2),
         ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: const BorderSide(color: Colors.black, width: 2),
+        ),
+    
+        hintText: widget.hind,
+        hintStyle: TextStyle(color: Colors.grey),
+        fillColor: Colors.grey.shade50,
+        filled: true,
       ),
     );
   }

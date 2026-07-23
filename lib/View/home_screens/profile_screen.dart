@@ -1,5 +1,5 @@
 import 'package:docter_appointment_app/View/Authentication/edit_profile_screen.dart';
-import 'package:docter_appointment_app/View/Authentication/signin_screen.dart';
+import 'package:docter_appointment_app/View/Authentication/sign_in_screen.dart';
 import 'package:docter_appointment_app/View/home_screens/components/profile_data_button.dart';
 import 'package:docter_appointment_app/View/home_screens/favorites_layout.dart';
 import 'package:docter_appointment_app/View/home_screens/notification_screen.dart';
@@ -196,7 +196,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                             context,
                                             MaterialPageRoute(
                                               builder: (context) =>
-                                                  SignUpScreen(),
+                                                  SignInScreen(),
                                             ),
                                           );
                                         },

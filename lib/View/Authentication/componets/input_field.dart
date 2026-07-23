@@ -19,26 +19,23 @@ class InputField extends StatefulWidget {
 class _InputFeildState extends State<InputField> {
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 20),
-      child: TextField(
-        controller: widget.controller,
-        decoration: InputDecoration(
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
-            borderSide: const BorderSide(color: Colors.grey, width: 2),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
-            borderSide: const BorderSide(color: Colors.black, width: 2),
-          ),
-
-          hintText: widget.hind,
-          hintStyle: TextStyle(color: Colors.grey),
-          prefixIcon: Icon(widget.icon),
-          fillColor: Colors.grey.shade50,
-          filled: true,
+    return TextField(
+      controller: widget.controller,
+      decoration: InputDecoration(
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: const BorderSide(color: Colors.grey, width: 2),
         ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: const BorderSide(color: Colors.black, width: 2),
+        ),
+    
+        hintText: widget.hind,
+        hintStyle: TextStyle(color: Colors.grey),
+        prefixIcon: Icon(widget.icon),
+        fillColor: Colors.grey.shade50,
+        filled: true,
       ),
     );
   }

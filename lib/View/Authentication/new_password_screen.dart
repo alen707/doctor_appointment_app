@@ -1,6 +1,6 @@
 import 'package:docter_appointment_app/View/Authentication/componets/input_button.dart';
 import 'package:docter_appointment_app/View/Authentication/componets/input_field.dart';
-import 'package:docter_appointment_app/View/Authentication/signin_screen.dart';
+import 'package:docter_appointment_app/View/Authentication/sign_in_screen.dart';
 import 'package:docter_appointment_app/l10n/app_localizations.dart';
 
 import 'package:flutter/material.dart';
@@ -75,6 +75,7 @@ class _LoginScreenState extends State<NewPasswordScreen> {
                 icon: Icons.password,
                 controller: createnewpasswordcontroller,
               ),
+               SizedBox(height: 15),
               InputField(
                 hind: AppLocalizations.of(context)!.conFormPassword,
                 icon: Icons.password,
@@ -87,7 +88,7 @@ class _LoginScreenState extends State<NewPasswordScreen> {
                   inputText: AppLocalizations.of(context)!.resetPassword,
                   nextpage: () => Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (context) => const SignUpScreen(),
+                      builder: (context) => const SignInScreen(),
                     ),
                   ),
                 ),

@@ -22,9 +22,9 @@ class _LoginScreenState extends State<ForgetPasswordScreen> {
       body: Padding(
         padding: const EdgeInsets.only(
           top: 10,
-          bottom: 10,
-          left: 30,
-          right: 30,
+          bottom: 30,
+          left: 25,
+          right: 25,
         ),
         child: SingleChildScrollView(
           child: Column(

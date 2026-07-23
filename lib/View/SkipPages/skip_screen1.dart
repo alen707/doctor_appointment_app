@@ -1,4 +1,5 @@
-import 'package:docter_appointment_app/View/Authentication/signin_screen.dart';
+
+import 'package:docter_appointment_app/View/Authentication/sign_in_screen.dart';
 import 'package:docter_appointment_app/View/SkipPages/skip_pageview.dart';
 import 'package:docter_appointment_app/ViewModal/skippage_sharedpreferance.dart';
 import 'package:docter_appointment_app/l10n/app_localizations.dart';
@@ -114,7 +115,7 @@ class _SkipScreenState extends State<SkipScreenA> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => SignUpScreen(),
+                              builder: (context) => SignInScreen(),
                             ),
                           );
                         },

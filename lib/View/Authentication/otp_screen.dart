@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:docter_appointment_app/View/Authentication/componets/input_button.dart';
 import 'package:docter_appointment_app/View/Authentication/new_password_screen.dart';
 import 'package:docter_appointment_app/l10n/app_localizations.dart';
@@ -21,9 +23,9 @@ class _LoginScreenState extends State<OtpScreen> {
       body: Padding(
         padding: const EdgeInsets.only(
           top: 10,
-          bottom: 10,
-          left: 30,
-          right: 30,
+          bottom: 30,
+          left: 25,
+          right: 25,
         ),
         child: SingleChildScrollView(
           child: Column(
@@ -68,17 +70,24 @@ class _LoginScreenState extends State<OtpScreen> {
 
               SizedBox(height: 15),
 
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: OtpTextField(
-                  fillColor: Colors.grey,
-                  numberOfFields: 5,
-                  showFieldAsBox: true,
-                  borderColor: Colors.grey.shade100,
-                  fieldWidth: 60,
-                  fieldHeight: 60,
-                  borderRadius: BorderRadius.circular(15),
-                ),
+              LayoutBuilder(
+                builder: (context, constraints) {
+                  const int fields = 5;
+                  const double spacing = 10;
+
+                  final double fieldWidth =
+                      (constraints.maxWidth - (fields - 1) * spacing) / fields;
+
+                  return OtpTextField(
+                    fillColor: Colors.grey,
+                    numberOfFields: 5,
+                    showFieldAsBox: true,
+                    borderColor: Colors.grey.shade100,
+                    fieldWidth: fieldWidth,
+                    fieldHeight: fieldWidth,
+                    borderRadius: BorderRadius.circular(15),
+                  );
+                },
               ),
 
               Padding(
