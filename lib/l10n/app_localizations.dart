@@ -769,6 +769,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Are you sure you want to log out?'**
   String get logoutdiscription;
+
+  /// No description provided for @markallasread.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark all as read'**
+  String get markallasread;
+
+  /// No description provided for @today.
+  ///
+  /// In en, this message translates to:
+  /// **'TODAY'**
+  String get today;
+
+  /// No description provided for @yestorday.
+  ///
+  /// In en, this message translates to:
+  /// **'YESTERDAY'**
+  String get yestorday;
+
+  /// No description provided for @older.
+  ///
+  /// In en, this message translates to:
+  /// **'OLDER'**
+  String get older;
 }
 
 class _AppLocalizationsDelegate

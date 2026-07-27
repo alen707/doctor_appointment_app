@@ -113,7 +113,12 @@
   "logout":"LogOut",
   "settings":"Settings",
   "yesLogout":"Yes, Logout",
-  "logoutdiscription":"Are you sure you want to log out?"
+  "logoutdiscription":"Are you sure you want to log out?",
+  "markallasread":"Mark all as read",
+  "today":"TODAY",
+  "yestorday":"YESTERDAY",
+  "older":"OLDER"
+  
 
 
 

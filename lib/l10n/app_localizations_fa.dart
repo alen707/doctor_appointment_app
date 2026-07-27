@@ -349,4 +349,16 @@ class AppLocalizationsFa extends AppLocalizations {
 
   @override
   String get logoutdiscription => 'Are you sure you want to log out?';
+
+  @override
+  String get markallasread => 'علامت‌گذاری همه به‌عنوان خوانده‌شده';
+
+  @override
+  String get today => 'امروز';
+
+  @override
+  String get yestorday => 'دیروز';
+
+  @override
+  String get older => 'قدیمی‌تر';
 }

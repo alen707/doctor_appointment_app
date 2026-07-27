@@ -1,6 +1,7 @@
 import 'package:docter_appointment_app/Modal/notification_modal.dart';
 import 'package:docter_appointment_app/Service/notification_api.dart';
 import 'package:docter_appointment_app/View/home_screens/components/notification_card.dart';
+import 'package:docter_appointment_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 class NotificationScreen extends StatefulWidget {
@@ -85,7 +86,7 @@ String getNotificationTime(DateTime createdAt) {
       appBar: AppBar(
         title: Center(
           child: Text(
-            "Notification",
+            AppLocalizations.of(context)!.notifications,
             style: TextStyle(
               color: Colors.black,
               fontSize: 20,
@@ -128,13 +129,13 @@ String getNotificationTime(DateTime createdAt) {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "TODAY",
+                    AppLocalizations.of(context)!.today,
                     style: TextStyle(fontSize: 16, color: Colors.grey),
                   ),
                   TextButton(
                     onPressed: () {},
                     child: Text(
-                      "Mark all as read",
+                      AppLocalizations.of(context)!.markallasread,
                       style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
@@ -164,13 +165,13 @@ String getNotificationTime(DateTime createdAt) {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "YESTERDAY",
+                    AppLocalizations.of(context)!.yestorday,
                     style: TextStyle(fontSize: 16, color: Colors.grey),
                   ),
                   TextButton(
                     onPressed: () {},
                     child: Text(
-                      "Mark all as read",
+                      AppLocalizations.of(context)!.markallasread,
                       style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.bold,
@@ -202,13 +203,13 @@ String getNotificationTime(DateTime createdAt) {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "OLDER",
+                    AppLocalizations.of(context)!.older,
                     style: TextStyle(fontSize: 16, color: Colors.grey),
                   ),
                   TextButton(
                     onPressed: () {},
                     child: Text(
-                      "Mark all as read",
+                      AppLocalizations.of(context)!.markallasread,
                       style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.bold,

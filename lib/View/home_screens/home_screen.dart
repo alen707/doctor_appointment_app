@@ -4,6 +4,7 @@ import 'package:docter_appointment_app/View/home_screens/components/home_title.d
 import 'package:docter_appointment_app/View/home_screens/components/icon_butten.dart';
 import 'package:docter_appointment_app/View/home_screens/components/medical_centers.dart';
 import 'package:docter_appointment_app/View/home_screens/doctor_search_screen.dart';
+import 'package:docter_appointment_app/View/home_screens/notification_screen.dart';
 import 'package:docter_appointment_app/ViewModal/language_provider.dart';
 import 'package:docter_appointment_app/l10n/app_localizations.dart';
 import 'package:dots_indicator/dots_indicator.dart';
@@ -91,7 +92,12 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
 
                       //SizedBox(width: 20,),
-                      Icon(Icons.notifications),
+                      //Icon(Icons.notifications),
+                      IconButton(icon:Icon(Icons.notifications),
+                        onPressed: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => NotificationScreen(),));
+                        },
+                        )
                     ],
                   ),
 

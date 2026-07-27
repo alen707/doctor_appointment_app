@@ -349,4 +349,16 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get logoutdiscription => 'Are you sure you want to log out?';
+
+  @override
+  String get markallasread => 'Mark all as read';
+
+  @override
+  String get today => 'TODAY';
+
+  @override
+  String get yestorday => 'YESTERDAY';
+
+  @override
+  String get older => 'OLDER';
 }

@@ -2,6 +2,7 @@ import 'package:docter_appointment_app/View/Authentication/componets/input_butto
 import 'package:docter_appointment_app/View/Authentication/componets/input_field.dart';
 import 'package:docter_appointment_app/View/Authentication/componets/normal_textfield.dart';
 import 'package:docter_appointment_app/View/home_screens/home_layout.dart';
+import 'package:docter_appointment_app/ViewModal/select_image_imagepicker.dart';
 import 'package:docter_appointment_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -71,7 +72,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   Padding(
                     padding: const EdgeInsets.only(top: 120, left: 140),
                     child: IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(context, MaterialPageRoute(builder:(context) => SelectImageImagepicker(),));
+                      },
                       icon: ImageIcon(
                         AssetImage("assets/icon/edit_profile.png"),
                         size: 40,

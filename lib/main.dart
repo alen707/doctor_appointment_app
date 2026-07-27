@@ -1,5 +1,4 @@
 
-import 'package:docter_appointment_app/View/Authentication/sign_in_screen.dart';
 import 'package:docter_appointment_app/View/first_loading_screen.dart';
 import 'package:docter_appointment_app/ViewModal/language_provider.dart';
 import 'package:docter_appointment_app/l10n/app_localizations.dart';
