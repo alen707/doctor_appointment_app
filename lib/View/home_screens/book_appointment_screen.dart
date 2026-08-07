@@ -3,6 +3,7 @@ import 'package:docter_appointment_app/View/home_screens/components/book_appoint
 import 'package:docter_appointment_app/View/home_screens/home_layout.dart';
 import 'package:docter_appointment_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class BookAppointmentScreen extends StatefulWidget {
@@ -34,7 +35,9 @@ class _BookAppoinmentScreenState extends State<BookAppointmentScreen> {
       AppLocalizations.of(context)!.t12,
     ];
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
+        backgroundColor: Colors.white,
         title: Center(
           child: Text(
             AppLocalizations.of(context)!.bookappointment,
@@ -59,57 +62,136 @@ class _BookAppoinmentScreenState extends State<BookAppointmentScreen> {
             children: [
               Text(
                 AppLocalizations.of(context)!.selectdate,
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
               ),
+              SizedBox(height: 10,),
 
-              TableCalendar(
-                firstDay: DateTime.utc(2020, 1, 1),
-                lastDay: DateTime.utc(2030, 12, 31),
-                focusedDay: _focusedDay,
-                calendarStyle: CalendarStyle(
-                  todayDecoration: BoxDecoration(
-                    color: Colors.black,
-                    shape: BoxShape.rectangle,
-                    borderRadius: BorderRadius.circular(10),
+              Container(
+                //height: 415,
+                decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.shade400,
+                      spreadRadius: 1,
+                      blurRadius: 6,
+                      offset: const Offset(0, 5),
+                    ),
+                  ],
+                  color: Colors.grey.shade50,
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.only(
+                    left: 10,
+                    right: 10,
+                    bottom: 10
                   ),
-                  todayTextStyle: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          // Month title
+                          Expanded(
+                            child: Text(
+                              DateFormat('MMMM yyyy').format(_focusedDay),
+                              style: const TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
 
-                  selectedDecoration: BoxDecoration(
-                    color: Colors.grey,
-                    shape: BoxShape.rectangle,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
+                          // Previous month
+                          IconButton(
+                            onPressed: () {
+                              setState(() {
+                                _focusedDay = DateTime(
+                                  _focusedDay.year,
+                                  _focusedDay.month - 1,
+                                );
+                              });
+                            },
+                            icon: const Icon(Icons.chevron_left, size: 28),
+                          ),
 
-                  selectedTextStyle: const TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
+                          // Next month
+                          IconButton(
+                            onPressed: () {
+                              setState(() {
+                                _focusedDay = DateTime(
+                                  _focusedDay.year,
+                                  _focusedDay.month + 1,
+                                );
+                              });
+                            },
+                            icon: const Icon(Icons.chevron_right, size: 28),
+                          ),
+                        ],
+                      ),
+
+                      Padding(
+                        padding: const EdgeInsets.only(),
+                        child: TableCalendar(
+                          firstDay: DateTime.utc(2020, 1, 1),
+                          lastDay: DateTime.utc(2030, 12, 31),
+                          focusedDay: _focusedDay,
+                          rowHeight: 40,
+                          daysOfWeekHeight: 20,
+
+                          calendarStyle: CalendarStyle(
+                            cellMargin: EdgeInsets.symmetric(
+                              //vertical: 10
+                            ),
+                            todayDecoration: BoxDecoration(
+                              color: Colors.black,
+                              shape: BoxShape.rectangle,
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            todayTextStyle: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                            ),
+
+                            selectedDecoration: BoxDecoration(
+                              color: Colors.grey,
+                              shape: BoxShape.rectangle,
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+
+                            selectedTextStyle: const TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+
+                          // headerStyle: const HeaderStyle(
+                          //   formatButtonVisible: false,
+                          //   titleCentered: false,
+
+                          // ),
+                          headerVisible: false,
+                          selectedDayPredicate: (day) {
+                            return isSameDay(_selectedDay, day);
+                          },
+                          onDaySelected: (selectedDay, focusedDay) {
+                            setState(() {
+                              _selectedDay = selectedDay;
+                              _focusedDay = focusedDay;
+                            });
+                          },
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-
-                headerStyle: const HeaderStyle(
-                  formatButtonVisible: false,
-                  titleCentered: false,
-                ),
-                selectedDayPredicate: (day) {
-                  return isSameDay(_selectedDay, day);
-                },
-                onDaySelected: (selectedDay, focusedDay) {
-                  setState(() {
-                    _selectedDay = selectedDay;
-                    _focusedDay = focusedDay;
-                  });
-                },
               ),
-              SizedBox(height: 10),
+              SizedBox(height: 20),
 
               Text(
                 AppLocalizations.of(context)!.selecthour,
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
               ),
-              SizedBox(height: 10),
+              SizedBox(height: 20),
 
               // Container(
               //   decoration: BoxDecoration(
@@ -147,8 +229,12 @@ class _BookAppoinmentScreenState extends State<BookAppointmentScreen> {
                   );
                 },
               ),
+             SizedBox(
+              height: 20,
+             ),
 
               InputButton(
+                
                 inputText: AppLocalizations.of(context)!.confirm,
                 nextpage: () {
                   showDialog(

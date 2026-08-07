@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class InputField extends StatefulWidget {
   final String hind;
-  final IconData icon;
+  final ImageIcon icon;
   // ignore: prefer_typing_uninitialized_variables, strict_top_level_inference
   final controller;
   const InputField({
@@ -20,11 +20,12 @@ class _InputFeildState extends State<InputField> {
   @override
   Widget build(BuildContext context) {
     return TextField(
+
       controller: widget.controller,
       decoration: InputDecoration(
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
-          borderSide: const BorderSide(color: Colors.grey, width: 2),
+          borderSide: const BorderSide(color:Color.fromARGB(106, 158, 158, 158), width: 1),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
@@ -32,8 +33,8 @@ class _InputFeildState extends State<InputField> {
         ),
     
         hintText: widget.hind,
-        hintStyle: TextStyle(color: Colors.grey),
-        prefixIcon: Icon(widget.icon),
+        hintStyle: TextStyle(color: Colors.grey.shade400),
+        prefixIcon: widget.icon,
         fillColor: Colors.grey.shade50,
         filled: true,
       ),

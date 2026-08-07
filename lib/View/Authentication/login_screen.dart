@@ -18,156 +18,148 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
       appBar: AppBar(backgroundColor: Colors.white),
-      body: Padding(
-        padding: const EdgeInsets.only( left: 25, right: 25,bottom: 30),
-        child: Center(
-          child: Column(
-            //crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-
-              Column(
-                children: [
-                  Image.asset("assets/images/logo.png"),
-                   Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    AppLocalizations.of(context)!.health,
-                    style: TextStyle(fontSize: 25, color: Colors.grey),
-                  ),
-                  Text(
-                    AppLocalizations.of(context)!.pal,
-                    style: TextStyle(fontSize: 25, color: Colors.black),
-                  ),
-                ],
-              ),
-                ],
-              ),
-             
-                
-             
-                
-             
-                
-              Column(
-                children: [
-                  Text(
-                    AppLocalizations.of(context)!.createAcount,
-                    style: TextStyle(
-                      fontSize: 25,
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
+      body: GestureDetector(
+        onTap: () {
+          FocusScope.of(context).unfocus();
+        },
+        behavior: HitTestBehavior.translucent,
+        child: Padding(
+          padding: const EdgeInsets.only(left: 25, right: 25, bottom: 30),
+          child: Center(
+            child: Column(
+              //crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  children: [
+                    Image.asset("assets/images/logo.png"),
+                    SizedBox(height: 10),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          AppLocalizations.of(context)!.health,
+                          style: TextStyle(fontSize: 25, color: Colors.grey),
+                        ),
+                        Text(
+                          AppLocalizations.of(context)!.pal,
+                          style: TextStyle(fontSize: 25, color: Colors.black),
+                        ),
+                      ],
                     ),
-                  ),
+                  ],
+                ),
 
-                  Text(
-                AppLocalizations.of(context)!.loginDiscription,
-                style: TextStyle(fontSize: 15, color: Colors.grey),
-              ),
-                ],
-              ),
-                
-             
-                
-              
-                
-             
-                
-              InputField(
-                hind: AppLocalizations.of(context)!.youerName,
-                icon: Icons.person,
-                controller: emailcontroller,
-              ),
-              InputField(
-                hind: AppLocalizations.of(context)!.yourMail,
-                icon: Icons.email,
-                controller: emailcontroller,
-              ),
-              InputField(
-                hind: AppLocalizations.of(context)!.password,
-                icon: Icons.password,
-                controller: emailcontroller,
-              ),
-                
-              InputButton(
-                inputText: AppLocalizations.of(context)!.createAcount,
-                nextpage: () => Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) =>
-                        const EditProfileScreen(from: "login"),
+                Column(
+                  children: [
+                    Text(
+                      AppLocalizations.of(context)!.createAcount,
+                      style: TextStyle(
+                        fontSize: 22,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(height: 10,),
+
+                    Text(
+                      AppLocalizations.of(context)!.loginDiscription,
+                      style: TextStyle(fontSize: 15, color: Colors.grey),
+                    ),
+                  ],
+                ),
+
+                InputField(
+                  hind: AppLocalizations.of(context)!.youerName,
+                  icon: ImageIcon(AssetImage("assets/icon/user.png"),color: Colors.grey.shade400),
+                  controller: emailcontroller,
+                ),
+                InputField(
+                  hind: AppLocalizations.of(context)!.yourMail,
+                  icon: ImageIcon(AssetImage("assets/icon/sms.png"),color: Colors.grey.shade400),
+                  controller: emailcontroller,
+                ),
+                InputField(
+                  hind: AppLocalizations.of(context)!.password,
+                  icon: ImageIcon(AssetImage("assets/icon/lock.png"),color: Colors.grey.shade400,),
+                  controller: emailcontroller,
+                ),
+
+                InputButton(
+                  inputText: AppLocalizations.of(context)!.createAcount,
+                  nextpage: () => Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          const EditProfileScreen(from: "login"),
+                    ),
                   ),
                 ),
-              ),
-              
-                
-              Row(
-                children: [
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        height: 1,
-                        //width: double.infinity,
-                        color: Colors.grey,
-                      ),
-                    ),
-                  ),
-                
-                  Text(
-                    "or",
-                    style: TextStyle(fontSize: 20, color: Colors.grey),
-                  ),
-                
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        height: 1,
-                        //width: double.infinity,
-                        color: Colors.grey,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-                
-          
-                
-              OtherLogin(
-                logo: "assets/images/google_logo.png",
-                platform: AppLocalizations.of(context)!.google,
-              ),
-              
-              OtherLogin(
-                logo: "assets/images/facebook_logo.png",
-                platform: AppLocalizations.of(context)!.facebook,
-              ),
-                
-             
-                
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(AppLocalizations.of(context)!.signinDiscription),
-                  TextButton(
-                    onPressed: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => const SignInScreen(),
+
+                Row(
+                  children: [
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                          height: 1,
+                          //width: double.infinity,
+                          color: Colors.grey.shade200,
                         ),
-                      );
-                    },
-                    child: Text(
-                      AppLocalizations.of(context)!.signin,
-                      style: TextStyle(color: Colors.blue),
+                      ),
                     ),
-                  ),
-                ],
-              ),
-            ],
+
+                    Text(
+                      "or",
+                      style: TextStyle(fontSize: 20, color: Colors.grey,fontWeight: FontWeight.bold),
+                    ),
+
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                          height: 1,
+                          //width: double.infinity,
+                          color: Colors.grey.shade200,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+
+                OtherLogin(
+                  logo: "assets/images/google_logo.png",
+                  platform: AppLocalizations.of(context)!.google,
+                ),
+
+                OtherLogin(
+                  logo: "assets/images/facebook_logo.png",
+                  platform: AppLocalizations.of(context)!.facebook,
+                ),
+
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(AppLocalizations.of(context)!.signinDiscription),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => const SignInScreen(),
+                          ),
+                        );
+                      },
+                      child: Text(
+                        AppLocalizations.of(context)!.signin,
+                        style: TextStyle(color: Colors.blue.shade700,fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),

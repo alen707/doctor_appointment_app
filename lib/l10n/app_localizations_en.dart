@@ -94,7 +94,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get facebook => 'Continue with Facebook';
 
   @override
-  String get signin => ' Sign In';
+  String get signin => 'Sign In';
 
   @override
   String get signinDiscription => 'Do you have an account ?';
@@ -135,7 +135,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get hiDiscription => 'Hope you’re doing fine.';
 
   @override
-  String get signup => ' Sign up';
+  String get signup => 'Sign up';
 
   @override
   String get signupdiscription => 'Don’t have an account yet?';
@@ -171,25 +171,25 @@ class AppLocalizationsEn extends AppLocalizations {
   String get dentistry => 'Dentistry';
 
   @override
-  String get cardio => 'Cardiolo..';
+  String get cardio => 'Cardiologist';
 
   @override
-  String get pulmono => 'Pulmono..';
+  String get pulmono => 'Pulmonologist';
 
   @override
   String get general => 'General';
 
   @override
-  String get neurology => 'Neurology';
+  String get neurology => 'Neurologist';
 
   @override
-  String get gastroen => 'Gastroen..';
+  String get gastroen => 'Gastroenterologist';
 
   @override
-  String get laborato => 'Laborato..';
+  String get laborato => 'Laboratory';
 
   @override
-  String get vaccinat => 'Vaccinat..';
+  String get vaccinat => 'Vaccination';
 
   @override
   String get nearbyMedicalCender => 'Nearby Medical Centers';

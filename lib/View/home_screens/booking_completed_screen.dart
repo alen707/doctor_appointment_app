@@ -1,8 +1,10 @@
 import 'package:docter_appointment_app/Modal/booking_modal.dart';
-import 'package:docter_appointment_app/Service/booking_api.dart';
 import 'package:docter_appointment_app/View/home_screens/components/doctor_card.dart';
+import 'package:docter_appointment_app/ViewModal/doctor_provider.dart';
 import 'package:docter_appointment_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
 
 class BookingCompletedScreen extends StatefulWidget {
   const BookingCompletedScreen({super.key});
@@ -12,7 +14,7 @@ class BookingCompletedScreen extends StatefulWidget {
 }
 
 class _BookingCompletedLayoutState extends State<BookingCompletedScreen> {
-  final BookingApi bookingApi = BookingApi();
+  //final BookingApi bookingApi = BookingApi();
   List<BookingModal> bookingList = [];
   @override
   void initState() {
@@ -21,7 +23,8 @@ class _BookingCompletedLayoutState extends State<BookingCompletedScreen> {
   }
 
   Future<void> loadDoctor() async {
-    bookingList = await bookingApi.getbookingApi();
+    //bookingList = await bookingApi.getbookingApi();
+    bookingList= await context.read<DoctorProvider>().docterCardProvider();
 
     setState(() {});
   }
@@ -30,19 +33,29 @@ class _BookingCompletedLayoutState extends State<BookingCompletedScreen> {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.white,
-      padding: const EdgeInsets.all(15),
+      
       child: ListView.builder(
+        padding: EdgeInsets.only(
+          top: 20
+        ),
         shrinkWrap: true,
         itemCount: bookingList.length,
-        itemBuilder: (context, index) => DoctorCard(
-          blackButten: AppLocalizations.of(context)!.addreview,
-          greyButten: AppLocalizations.of(context)!.rebook,
-          date: bookingList[index].date,
-          dep: bookingList[index].specialization,
-          location: bookingList[index].location,
-          name: bookingList[index].doctorName,
-          time: bookingList[index].time,
-          hospital: bookingList[index].hospital,
+        itemBuilder: (context, index) => Padding(
+          padding: const EdgeInsets.only(
+            left: 25,
+            right: 25,
+            bottom: 20
+          ),
+          child: DoctorCard(
+            blackButten: AppLocalizations.of(context)!.addreview,
+            greyButten: AppLocalizations.of(context)!.rebook,
+            date: bookingList[index].date,
+            dep: bookingList[index].specialization,
+            location: bookingList[index].location,
+            name: bookingList[index].doctorName,
+            time: bookingList[index].time,
+            hospital: bookingList[index].hospital,
+          ),
         ),
       ),
     );

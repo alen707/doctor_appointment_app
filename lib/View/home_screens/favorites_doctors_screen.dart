@@ -34,98 +34,123 @@ class _FavoritesDoctorsScreenState extends State<FavoritesDoctorsScreen> {
         child: Column(
           children: [
             ListView.builder(
+              padding: EdgeInsets.only(
+          
+              ),
               shrinkWrap: true,
               itemCount: docterlist.length,
-              itemBuilder: (context, index) => DoctorListData(
-                name: docterlist[index].name,
-                categary: docterlist[index].specialization,
-                location: docterlist[index].hospital,
-                rating: docterlist[index].rating,
-                reviewcount: docterlist[index].reviews,
+              itemBuilder: (context, index) => 
+              Padding(
+                padding: const EdgeInsets.only(
+                  top: 10,
+                  left: 15,
+                  right: 15,
+                
+                ),
+                child: DoctorListData(
+                  name: docterlist[index].name,
+                  categary: docterlist[index].specialization,
+                  location: docterlist[index].hospital,
+                  rating: docterlist[index].rating,
+                  reviewcount: docterlist[index].reviews,
+                
+                  ontap: () {
+                    showModalBottomSheet(
+                      backgroundColor: Colors.white,
+                      context: context,
+                      builder: (BuildContext context) {
+                        return SizedBox(
+                          width: double.infinity,
+                          height: 350,
+                          child: Column(
+                            children: [
+                              SizedBox(height: 30),
+                              Center(
+                                child: Text(
+                                  AppLocalizations.of(
+                                    context,
+                                  )!.removefromfavorites,
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
 
-                ontap: () {
-                  showModalBottomSheet(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return SizedBox(
-                        width: double.infinity,
-                        height: 350,
-                        child: Column(
-                          children: [
-                            SizedBox(height: 30),
-                            Center(
-                              child: Text(
-                                AppLocalizations.of(
-                                  context,
-                                )!.removefromfavorites,
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
+                              ),
+
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                  left: 20,
+                                  right: 20
+                                ),
+                                child: Divider(color: Colors.grey.shade300,),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(20.0),
+                                child: DoctorListData(
+                                  ontap: () {},
+                                  name: docterlist[index].name,
+                                  categary: docterlist[index].specialization,
+                                  location: docterlist[index].hospital,
+                                  rating: docterlist[index].rating,
+                                  reviewcount: docterlist[index].reviews,
                                 ),
                               ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(20.0),
-                              child: DoctorListData(
-                                ontap: () {},
-                                name: docterlist[index].name,
-                                categary: docterlist[index].specialization,
-                                location: docterlist[index].hospital,
-                                rating: docterlist[index].rating,
-                                reviewcount: docterlist[index].reviews,
-                              ),
-                            ),
-
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                top: 10,
-                                left: 20,
-                                right: 20,
-                              ),
-                              child: Row(
-                                children: [
-                                  Expanded(
-                                    child: ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                        backgroundColor: Colors.grey.shade300,
-                                      ),
-                                      onPressed: () {
-                                        Navigator.pop(context);
-                                      },
-                                      child: Text(
-                                        AppLocalizations.of(context)!.cancel,
-                                        style: TextStyle(
-                                          fontSize: 14,
-                                          color: Colors.black,
+                
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                  top: 10,
+                                  left: 20,
+                                  right: 20,
+                                ),
+                                child: Row(
+                                  children: [
+                                    Expanded(
+                                      child: ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                          backgroundColor: Colors.grey.shade300,
+                                        ),
+                                        onPressed: () {
+                                          Navigator.pop(context);
+                                        },
+                                        child: Text(
+                                          AppLocalizations.of(context)!.cancel,
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.bold
+                                          ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                  SizedBox(width: 20),
-                                  Expanded(
-                                    child: ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                        backgroundColor: Colors.black,
-                                      ),
-                                      onPressed: () {},
-                                      child: Text(
-                                        AppLocalizations.of(context)!.rebook,
-                                        style: TextStyle(
-                                          fontSize: 14,
-                                          color: Colors.white,
+                                    SizedBox(width: 20),
+                                    Expanded(
+                                      child: ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                          backgroundColor: Colors.black,
+                                        ),
+                                        onPressed: () {},
+                                        child: Text(
+                                         " Yes, Remove",
+                                          //AppLocalizations.of(context)!.rebook,
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold
+                                          ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
-                            ),
-                          ],
-                        ),
-                      );
-                    },
-                  );
-                },
+                            ],
+                          ),
+                        );
+                      },
+                    );
+                  },
+                ),
               ),
             ),
 

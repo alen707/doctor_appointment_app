@@ -11,8 +11,12 @@ class BookingScreenLayout extends StatefulWidget {
 }
 
 class _BookingScreenLayoutState extends State<BookingScreenLayout> {
+  
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+
+final fontSize = (screenWidth * 0.045).clamp(14.0, 18.0);
     return DefaultTabController(
       length: 3,
       child: Scaffold(
@@ -32,6 +36,12 @@ class _BookingScreenLayoutState extends State<BookingScreenLayout> {
             ),
           ),
           bottom: TabBar(
+            unselectedLabelColor: Colors.grey,
+            indicatorColor:Colors.black ,
+            labelColor:Colors.black ,
+            labelStyle: TextStyle(
+              fontSize: fontSize
+            ),
             tabs: [
               Tab(text: AppLocalizations.of(context)!.upcoming),
               Tab(text: AppLocalizations.of(context)!.completed),

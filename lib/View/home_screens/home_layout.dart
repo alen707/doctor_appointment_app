@@ -32,25 +32,50 @@ class _HomeLayoutState extends State<HomeLayout> {
     return Scaffold(
       body: IndexedStack(index: _currentIndex, children: _screens),
 
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _currentIndex,
-        type: BottomNavigationBarType.fixed,
+      bottomNavigationBar: SizedBox(
+        height: 95,
+        child: BottomNavigationBar(
+          showSelectedLabels: false,
+          showUnselectedLabels: false,
 
-        unselectedItemColor: Colors.grey,
-        selectedItemColor: Colors.black,
 
-        onTap: (index) => setState(() {
-          _currentIndex = index;
-        }),
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: ""),
-          BottomNavigationBarItem(icon: Icon(Icons.location_on), label: ""),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.calendar_month_sharp),
-            label: "",
-          ),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: ""),
-        ],
+          backgroundColor: Colors.white,
+          currentIndex: _currentIndex,
+          type: BottomNavigationBarType.fixed,
+
+          unselectedItemColor: Colors.grey,
+          selectedItemColor: Colors.black,
+
+          onTap: (index) => setState(() {
+            _currentIndex = index;
+          }),
+          items: const [
+            BottomNavigationBarItem(
+              icon: ImageIcon(AssetImage("assets/icon/activeHome.png")),
+              label: "",
+              activeIcon: ImageIcon(AssetImage("assets/icon/home.png")),
+            ),
+            BottomNavigationBarItem(
+              icon: ImageIcon(AssetImage("assets/icon/location.png")),
+              label: "",
+              activeIcon: ImageIcon(
+                AssetImage("assets/icon/activelocation.png"),
+              ),
+            ),
+            BottomNavigationBarItem(
+              icon: ImageIcon(AssetImage("assets/icon/calendar.png")),
+              label: "",
+              activeIcon: ImageIcon(
+                AssetImage("assets/icon/activecalendar.png"),
+              ),
+            ),
+            BottomNavigationBarItem(
+              icon: ImageIcon(AssetImage("assets/icon/Profile.png")),
+              label: "",
+              activeIcon: ImageIcon(AssetImage("assets/icon/activeframe.png")),
+            ),
+          ],
+        ),
       ),
     );
   }

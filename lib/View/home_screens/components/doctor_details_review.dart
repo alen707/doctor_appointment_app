@@ -42,7 +42,7 @@ class DoctorDetailsReviews extends StatelessWidget {
                   children: [
                     Text(
                       rating.toString(),
-                      style: TextStyle(fontSize: 12, color: Colors.grey),
+                      style: TextStyle(fontSize: 16, color: Colors.grey.shade600),
                     ),
                     Row(
                       children: [
@@ -51,14 +51,14 @@ class DoctorDetailsReviews extends StatelessWidget {
                           (_) => const Icon(
                             Icons.star,
                             color: Colors.amber,
-                            size: 15,
+                            size: 16,
                           ),
                         ),
                         if (rating % 1 == 0.5)
                           const Icon(
                             Icons.star_half,
                             color: Colors.amber,
-                            size: 15,
+                            size: 16,
                           ),
                       ],
                     ),
@@ -77,7 +77,7 @@ class DoctorDetailsReviews extends StatelessWidget {
 
         SizedBox(height: 10),
 
-        Text(reviews, style: TextStyle(fontSize: 14, color: Colors.grey)),
+        Text(reviews, style: TextStyle(fontSize: 16, color: Colors.grey.shade600)),
       ],
     );
   }

@@ -29,8 +29,8 @@ class DoctorDetailsBadge extends StatelessWidget {
             Text(
               data,
               style: TextStyle(
-                color: Colors.black,
-                fontSize: 14,
+                color: Colors.grey.shade600,
+                fontSize: 18,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -41,7 +41,7 @@ class DoctorDetailsBadge extends StatelessWidget {
             // ),),
           ],
         ),
-        Text(title, style: TextStyle(color: Colors.grey, fontSize: 14)),
+        Text(title, style: TextStyle(color: Colors.grey.shade600, fontSize: 14)),
       ],
     );
   }

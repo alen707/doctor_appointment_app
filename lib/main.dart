@@ -1,22 +1,30 @@
-
 import 'package:docter_appointment_app/View/first_loading_screen.dart';
+import 'package:docter_appointment_app/ViewModal/doctor_provider.dart';
+import 'package:docter_appointment_app/ViewModal/hospital_provider.dart';
 import 'package:docter_appointment_app/ViewModal/language_provider.dart';
+import 'package:docter_appointment_app/ViewModal/notification_provider.dart';
+import 'package:docter_appointment_app/ViewModal/sign_in_provider.dart';
 import 'package:docter_appointment_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 
-
 void main() async {
-    WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
 
-  await SystemChrome.setPreferredOrientations([
-    DeviceOrientation.portraitUp,
-  ]);
+  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   runApp(
-    ChangeNotifierProvider(
-      create: (_) => LanguageProvider(),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => LanguageProvider()),
+        ChangeNotifierProvider(create: (context) =>DoctorProvider() ),
+        ChangeNotifierProvider(create: (context) => HospitalProvider(),),
+        ChangeNotifierProvider(create: (context) => NotificationProvider(),),
+        ChangeNotifierProvider(create: (context) =>SignInProvider() )
+
+        ],
+
       child: const MyApp(),
     ),
   );
@@ -30,9 +38,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  
   @override
-  
   Widget build(BuildContext context) {
     final languageProvider = Provider.of<LanguageProvider>(context);
     return MaterialApp(
@@ -43,21 +49,18 @@ class _MyAppState extends State<MyApp> {
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
-        AppLocalizations.delegate
+        AppLocalizations.delegate,
       ],
 
-      supportedLocales: const[
-        Locale("en"),
-        Locale("fa")
-      ],
+      supportedLocales: const [Locale("en"), Locale("fa")],
 
-     locale: languageProvider.locale,
-       //home: const MyHomePage(),
+      locale: languageProvider.locale,
+      //home: const MyHomePage(),
       home: FirstLoadingScreen(),
-     //home: SkipScreenA(),
+      //home: SkipScreenA(),
       //home: LoginScreen(),
-       //home: SignUpScreen(),
-       //home: ForgetPasswordScreen(),
+      //home: SignUpScreen(),
+      //home: ForgetPasswordScreen(),
       //home: OtpScreen(),
       //home: NewPasswordScreen(),
       //home: EditProfileScreen(),
@@ -72,4 +75,3 @@ class _MyAppState extends State<MyApp> {
     );
   }
 }
-

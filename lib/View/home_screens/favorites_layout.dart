@@ -25,6 +25,13 @@ class _FavoritesLayoutState extends State<FavoritesLayout> {
             ),
           ),
           bottom: TabBar(
+            indicatorColor: Colors.black,
+            labelColor: Colors.black,
+            unselectedLabelColor: Colors.grey,
+            labelStyle: TextStyle(
+              fontSize: 18
+            ),
+
             tabs: [
               Tab(text: AppLocalizations.of(context)!.doctors),
               Tab(text: AppLocalizations.of(context)!.hospitals),

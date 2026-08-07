@@ -1,11 +1,12 @@
 import 'package:docter_appointment_app/Modal/docters_list_modal.dart';
-import 'package:docter_appointment_app/Service/docter_list_api.dart';
 import 'package:docter_appointment_app/View/home_screens/components/doctor_list_data.dart';
 import 'package:docter_appointment_app/View/home_screens/components/filter_button.dart';
 import 'package:docter_appointment_app/View/home_screens/components/search_field.dart';
 import 'package:docter_appointment_app/View/home_screens/doctor_details.dart';
+import 'package:docter_appointment_app/ViewModal/doctor_provider.dart';
 import 'package:docter_appointment_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class DoctorSearchScreen extends StatefulWidget {
   const DoctorSearchScreen({super.key});
@@ -15,7 +16,7 @@ class DoctorSearchScreen extends StatefulWidget {
 }
 
 class _DocterSearchScreenState extends State<DoctorSearchScreen> {
-  final DocterListApi docterDetailApi = DocterListApi();
+  //final DocterListApi docterDetailApi = DocterListApi();
   List<DocterListModal> doctorlist = [];
   List<DocterListModal> searchDoctors = [];
   List<DocterListModal> filteredDoctors = [];
@@ -27,7 +28,8 @@ class _DocterSearchScreenState extends State<DoctorSearchScreen> {
   }
 
   Future<void> loadDoctor() async {
-    doctorlist = await docterDetailApi.getDocterListApi();
+    //doctorlist = await docterDetailApi.getDocterListApi();
+    doctorlist = await context.read<DoctorProvider>().docterListProvider();
     searchDoctors = List.from(doctorlist);
     filteredDoctors = List.from(doctorlist);
 
@@ -94,44 +96,52 @@ class _DocterSearchScreenState extends State<DoctorSearchScreen> {
     return Scaffold(
       body: Container(
         color: Colors.white,
-        child: Padding(
-          padding: const EdgeInsets.only(top: 40, left: 20, right: 20),
-          child: Column(
-            children: [
-              Row(
-                // mainAxisAlignment: MainAxisAlignment.center,
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(top: 50, left: 20, right: 20),
+              child: Column(
                 children: [
-                  IconButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    icon: Icon(Icons.arrow_back),
-                  ),
-                  Expanded(
-                    child: Center(
-                      child: Text(
-                        AppLocalizations.of(context)!.alldocters,
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black,
-                          inherit: false,
+                  Row(
+                    // mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      IconButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        icon: Icon(Icons.arrow_back),
+                      ),
+                      Expanded(
+                        child: Center(
+                          child: Text(
+                            AppLocalizations.of(context)!.alldocters,
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                              inherit: false,
+                            ),
+                          ),
                         ),
                       ),
-                    ),
+
+                      SizedBox(width: 30),
+                    ],
                   ),
 
-                  SizedBox(width: 30),
+                  SearchField(
+                    title: AppLocalizations.of(context)!.searchdoc,
+                    onChanged: searchDoctor,
+                  ),
+
+                  SizedBox(height: 15),
                 ],
               ),
-              SearchField(
-                title: AppLocalizations.of(context)!.searchdoc,
-                onChanged: searchDoctor,
-              ),
+            ),
 
-              SizedBox(height: 15),
-
-              SizedBox(
+            Padding(
+              padding: const EdgeInsets.only(left: 20),
+              child: SizedBox(
                 height: 50,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
@@ -149,9 +159,12 @@ class _DocterSearchScreenState extends State<DoctorSearchScreen> {
                   },
                 ),
               ),
-              SizedBox(height: 5),
+            ),
+            SizedBox(height: 5),
 
-              Row(
+            Padding(
+              padding: const EdgeInsets.only(left: 20, right: 20),
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
@@ -163,44 +176,49 @@ class _DocterSearchScreenState extends State<DoctorSearchScreen> {
                     children: [
                       Text(
                         AppLocalizations.of(context)!.defalt,
-                        style: TextStyle(fontSize: 14, color: Colors.grey),
+                        style: TextStyle(fontSize: 14, color: Colors.grey.shade700),
                       ),
 
-                      Icon(Icons.keyboard_arrow_down, color: Colors.grey),
+                      ImageIcon(AssetImage("assets/icon/arrow.png"),color: Colors.grey.shade700,)
                     ],
                   ),
                 ],
               ),
+            ),
 
-              Expanded(
-                child: ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: searchDoctors.length,
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: DoctorListData(
-                        name: searchDoctors[index].name,
-                        categary: searchDoctors[index].specialization,
-                        location: searchDoctors[index].hospital,
-                        rating: searchDoctors[index].rating,
-                        reviewcount: searchDoctors[index].reviews,
+            Expanded(
+              child: ListView.builder(
+                padding: EdgeInsets.only(bottom: 20),
+                shrinkWrap: true,
+                itemCount: searchDoctors.length,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.only(
+                      top: 15,
+                      left: 20,
+                      right: 20,
+                    ),
+                    child: DoctorListData(
+                      name: searchDoctors[index].name,
+                      categary: searchDoctors[index].specialization,
+                      location: searchDoctors[index].hospital,
+                      rating: searchDoctors[index].rating,
+                      reviewcount: searchDoctors[index].reviews,
 
-                        ontap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => DoctorDetails(),
-                            ),
-                          );
-                        },
-                      ),
-                    );
-                  },
-                ),
+                      ontap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => DoctorDetails(),
+                          ),
+                        );
+                      },
+                    ),
+                  );
+                },
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

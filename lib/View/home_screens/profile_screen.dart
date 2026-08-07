@@ -17,6 +17,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Column(
@@ -52,15 +53,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
 
                         Positioned(
-                          bottom: 0,
+                          bottom: 15,
                           right: 0,
-                          child: IconButton(
-                            onPressed: () {},
-                            icon: ImageIcon(
-                              AssetImage("assets/icon/message-edit-new.png"),
-                              size: 30,
-                            ),
-                          ),
+                          child: EditProfileIcon(),
                         ),
                       ],
                     ),
@@ -109,12 +104,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
               title: AppLocalizations.of(context)!.notifications,
               nextpage: () {
                 Navigator.push(
-                  context, 
-                  MaterialPageRoute(
-                    builder: (context) => NotificationScreen(),
-
-                    )
-                  );
+                  context,
+                  MaterialPageRoute(builder: (context) => NotificationScreen()),
+                );
               },
             ),
             ProfileDataButton(
@@ -133,97 +125,105 @@ class _ProfileScreenState extends State<ProfileScreen> {
               nextpage: () {},
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 20, right: 20, bottom: 25),
-              child: Padding(
-                padding: const EdgeInsets.only(left: 20, right: 20),
-                child: InkWell(
-                  onTap: () {
-                    showModalBottomSheet(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return SizedBox(
-                          height: 200,
-                          width: double.infinity,
-                          child: Column(
-                            children: [
-                              SizedBox(height: 20),
-                              Text(
-                                AppLocalizations.of(context)!.logout,
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold,
-                                ),
+              padding: const EdgeInsets.only(
+                left: 20,
+                 right: 20
+                 ),
+              child: InkWell(
+                onTap: () {
+                  showModalBottomSheet(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return SizedBox(
+                        height: 200,
+                        width: double.infinity,
+                        child: Column(
+                          children: [
+                            SizedBox(height: 20),
+                            Text(
+                              AppLocalizations.of(context)!.logout,
+                              style: TextStyle(
+                                fontSize: 20,
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold,
                               ),
-                              SizedBox(height: 20),
-
-                              Text(
-                                AppLocalizations.of(context)!.loginDiscription,
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  color: Colors.grey,
-                                ),
+                            ),
+                            SizedBox(height: 20),
+            
+                            Text(
+                              AppLocalizations.of(context)!.loginDiscription,
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: Colors.grey,
                               ),
-                              Padding(
-                                padding: const EdgeInsets.all(20.0),
-                                child: Row(
-                                  children: [
-                                    Expanded(
-                                      child: ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                          backgroundColor: Colors.grey.shade300,
-                                        ),
-                                        onPressed: () {
-                                          Navigator.pop(context);
-                                        },
-                                        child: Text(
-                                          AppLocalizations.of(context)!.cancel,
-                                          style: TextStyle(
-                                            fontSize: 14,
-                                            color: Colors.black,
-                                          ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(20.0),
+                              child: Row(
+                                children: [
+                                  Expanded(
+                                    child: ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: Colors.grey.shade300,
+                                      ),
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
+                                      child: Text(
+                                        AppLocalizations.of(context)!.cancel,
+                                        style: TextStyle(
+                                          fontSize: 14,
+                                          color: Colors.black,
                                         ),
                                       ),
                                     ),
-                                    SizedBox(width: 20),
-                                    Expanded(
-                                      child: ElevatedButton(
-                                        style: ElevatedButton.styleFrom(
-                                          backgroundColor: Colors.black,
-                                        ),
-                                        onPressed: () {
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) =>
-                                                  SignInScreen(),
-                                            ),
-                                          );
-                                        },
-                                        child: Text(
-                                          AppLocalizations.of(
-                                            context,
-                                          )!.yesLogout,
-                                          style: TextStyle(
-                                            fontSize: 14,
-                                            color: Colors.white,
+                                  ),
+                                  SizedBox(width: 20),
+                                  Expanded(
+                                    child: ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: Colors.black,
+                                      ),
+                                      onPressed: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                SignInScreen(),
                                           ),
+                                        );
+                                      },
+                                      child: Text(
+                                        AppLocalizations.of(
+                                          context,
+                                        )!.yesLogout,
+                                        style: TextStyle(
+                                          fontSize: 14,
+                                          color: Colors.white,
                                         ),
                                       ),
                                     ),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
-                            ],
-                          ),
-                        );
-                      },
-                    );
-                  },
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  );
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        top: 10,
+                        left: 20,
+                        right: 20,
+                        bottom: 10
+                      ),
+                      child: Row(
                         children: [
                           ImageIcon(
                             AssetImage("assets/icon/logout.png"),
@@ -239,8 +239,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           ),
                         ],
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
             ),

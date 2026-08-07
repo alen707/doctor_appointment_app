@@ -1,8 +1,9 @@
 import 'package:docter_appointment_app/Modal/notification_modal.dart';
-import 'package:docter_appointment_app/Service/notification_api.dart';
 import 'package:docter_appointment_app/View/home_screens/components/notification_card.dart';
+import 'package:docter_appointment_app/ViewModal/notification_provider.dart';
 import 'package:docter_appointment_app/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class NotificationScreen extends StatefulWidget {
   const NotificationScreen({super.key});
@@ -12,7 +13,7 @@ class NotificationScreen extends StatefulWidget {
 }
 
 class _NotificationScreenState extends State<NotificationScreen> {
-  final NotificationApi notificationApi = NotificationApi();
+  //final NotificationApi notificationApi = NotificationApi();
   List<NotificationModal> notification = [];
   List<NotificationItem> todayNotifications = [];
 List<NotificationItem> yesterdayNotifications = [];
@@ -25,7 +26,10 @@ List<NotificationItem> olderNotifications = [];
   }
 
  Future<void> loadNotification() async {
-  notification = await notificationApi.getNotificationApi();
+ 
+ 
+  //notification = await notificationApi.getNotificationApi();
+ notification= await context.read<NotificationProvider>().hospitalProvider();
 
   final items = notification.first.notifications;
 
@@ -130,14 +134,14 @@ String getNotificationTime(DateTime createdAt) {
                 children: [
                   Text(
                     AppLocalizations.of(context)!.today,
-                    style: TextStyle(fontSize: 16, color: Colors.grey),
+                    style: TextStyle(fontSize: 18, color: Colors.grey),
                   ),
                   TextButton(
                     onPressed: () {},
                     child: Text(
                       AppLocalizations.of(context)!.markallasread,
                       style: TextStyle(
-                        fontSize: 14,
+                        fontSize: 16,
                         fontWeight: FontWeight.bold,
                         color: Colors.black,
                       ),
@@ -166,14 +170,14 @@ String getNotificationTime(DateTime createdAt) {
                 children: [
                   Text(
                     AppLocalizations.of(context)!.yestorday,
-                    style: TextStyle(fontSize: 16, color: Colors.grey),
+                    style: TextStyle(fontSize: 18, color: Colors.grey),
                   ),
                   TextButton(
                     onPressed: () {},
                     child: Text(
                       AppLocalizations.of(context)!.markallasread,
                       style: TextStyle(
-                        fontSize: 14,
+                        fontSize: 16,
                         fontWeight: FontWeight.bold,
                         color: Colors.black,
                       ),
@@ -204,14 +208,14 @@ String getNotificationTime(DateTime createdAt) {
                 children: [
                   Text(
                     AppLocalizations.of(context)!.older,
-                    style: TextStyle(fontSize: 16, color: Colors.grey),
+                    style: TextStyle(fontSize: 18, color: Colors.grey),
                   ),
                   TextButton(
                     onPressed: () {},
                     child: Text(
                       AppLocalizations.of(context)!.markallasread,
                       style: TextStyle(
-                        fontSize: 14,
+                        fontSize: 16,
                         fontWeight: FontWeight.bold,
                         color: Colors.black,
                       ),

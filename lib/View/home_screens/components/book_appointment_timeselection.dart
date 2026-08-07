@@ -16,10 +16,12 @@ class BookAppointmentTimeselection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
+      
       style: ElevatedButton.styleFrom(
+        shadowColor: Colors.transparent,
         backgroundColor: selectedindex == intex
             ? Colors.black
-            : Colors.grey.shade300,
+            : Colors.grey.shade50,
         //foregroundColor: Colors.white,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       ),
@@ -27,7 +29,7 @@ class BookAppointmentTimeselection extends StatelessWidget {
       child: Text(
         time,
         style: TextStyle(
-          color: selectedindex == intex ? Colors.white : Colors.black,
+          color: selectedindex == intex ? Colors.white : Colors.grey.shade600,
           fontSize: 14,
         ),
       ),

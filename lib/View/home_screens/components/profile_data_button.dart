@@ -13,39 +13,50 @@ class ProfileDataButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      child: Padding(
-        padding: const EdgeInsets.only(left: 20, right: 20, bottom: 15),
+    return Padding(
+      padding: const EdgeInsets.only(left: 20, right: 20),
+      child: Material(
+         color: Colors.transparent,
         child: InkWell(
+              //borderRadius: BorderRadius.circular(12),
+         splashColor: Colors.grey.shade300,
+highlightColor: Colors.grey.shade300,
+        
+        
+         
           onTap: nextpage,
-          child: Container(
-            decoration: BoxDecoration(
-              border: Border(
-                bottom: BorderSide(width: 2, color: Colors.grey.shade300),
+          child: Center(
+            child: Ink(
+              height: 50,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                border: Border(
+                  bottom: BorderSide(width: 2, color: Colors.grey.shade300),
+                ),
               ),
-            ),
-
-            child: Padding(
-              padding: const EdgeInsets.only(left: 20, right: 20, bottom: 10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    children: [
-                      ImageIcon(icons, size: 24),
-                      SizedBox(width: 20),
-                      Text(
-                        title,
-                        style: TextStyle(
-                          color: Colors.grey.shade700,
-                          fontSize: 18,
+                
+              child: Padding(
+                padding: const EdgeInsets.only(left: 20, right: 20, ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        ImageIcon(icons, size: 24),
+                        SizedBox(width: 20),
+                        Text(
+                          title,
+                          style: TextStyle(
+                            color: Colors.grey.shade700,
+                            fontSize: 18,
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-
-                  Icon(Icons.chevron_right),
-                ],
+                      ],
+                    ),
+                
+                    Icon(Icons.chevron_right),
+                  ],
+                ),
               ),
             ),
           ),

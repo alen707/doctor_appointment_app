@@ -11,9 +11,10 @@ class OtherLogin extends StatelessWidget {
       width: double.infinity,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
+          shadowColor: Colors.transparent,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadiusGeometry.circular(10),
-            side: BorderSide(color: Colors.grey.shade100, width: 4),
+            side: BorderSide(color: Colors.grey.shade300, width: 1),
           ),
           backgroundColor: Colors.white,
         ),
@@ -23,7 +24,8 @@ class OtherLogin extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.asset(logo, height: 30, width: 30),
+              Image.asset(logo, height: 25, width: 25),
+              SizedBox(width: 5,),
               Text(
                 platform,
                 style: TextStyle(color: Colors.black, fontSize: 15),

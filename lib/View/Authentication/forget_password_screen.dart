@@ -53,7 +53,7 @@ class _LoginScreenState extends State<ForgetPasswordScreen> {
               Text(
                 AppLocalizations.of(context)!.forgetPassword,
                 style: TextStyle(
-                  fontSize: 25,
+                  fontSize: 22,
                   color: Colors.black,
                   fontWeight: FontWeight.bold,
                 ),
@@ -71,7 +71,7 @@ class _LoginScreenState extends State<ForgetPasswordScreen> {
 
               InputField(
                 hind: AppLocalizations.of(context)!.yourMail,
-                icon: Icons.email,
+                icon: ImageIcon(AssetImage("assets/icon/sms.png"),color:Colors.grey.shade400),
                 controller: forgetPassword,
               ),
 

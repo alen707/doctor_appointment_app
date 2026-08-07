@@ -28,7 +28,7 @@ class _NotificationCardState extends State<NotificationCard> {
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               image: DecorationImage(
-                image: AssetImage("assets/images/ads_background.png"),
+                image: AssetImage("assets/icon/calendar-tick.png"),
                 fit: BoxFit.cover,
               ),
             ),
@@ -43,18 +43,21 @@ class _NotificationCardState extends State<NotificationCard> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
 
                     children: [
-                      Text(
-                        widget.title,
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
+                      Expanded(
+                        child: Text(
+                          widget.title,
+                           overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                       Text(
                         widget.time,
                         style: TextStyle(
-                          fontSize: 14,
-                          color: Colors.grey.shade800,
+                          fontSize: 16,
+                          color: Colors.grey.shade600,
                         ),
                       ),
                     ],

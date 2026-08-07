@@ -26,10 +26,13 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
       backgroundColor: Colors.white,
 
       appBar: AppBar(
-        leading: IconButton(onPressed: () {
-          Navigator.pop(context);
-        },
-         icon: Icon(Icons.arrow_back)),
+        backgroundColor: Colors.white,
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: Icon(Icons.arrow_back),
+        ),
         title: Text(
           AppLocalizations.of(context)!.fillYourProfile,
           style: TextStyle(
@@ -40,167 +43,243 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         ),
       ),
 
-      body: Padding(
-        padding: const EdgeInsets.only(
-          left: 25,
-          right: 25,
-          bottom: 30
-        ),
-        child: Center(
-          child: Column(
-            spacing: 20,
-            //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Stack(
-                children: [
-                  Container(
-                    width: 200,
-                    height: 200,
-                
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage("assets/images/profile-avatar.png"),
-                        colorFilter: ColorFilter.mode(
-                          Colors.grey,
-                          BlendMode.srcATop,
+      body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Padding(
+          padding: const EdgeInsets.only(left: 25, right: 25, bottom: 30),
+          child: Center(
+            child: Column(
+              spacing: 20,
+              //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Stack(
+                  children: [
+                    Container(
+                      width: 200,
+                      height: 200,
+
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage("assets/icon/profile-circle.png",),
+                          // colorFilter: ColorFilter.mode(
+                          //   Colors.grey,
+                          //   BlendMode.srcATop,
+                          // ),
                         ),
-                      ),
-                      shape: BoxShape.circle,
-                    ),
-                  ),
-                
-                  Padding(
-                    padding: const EdgeInsets.only(top: 120, left: 140),
-                    child: IconButton(
-                      onPressed: () {
-                        Navigator.push(context, MaterialPageRoute(builder:(context) => SelectImageImagepicker(),));
-                      },
-                      icon: ImageIcon(
-                        AssetImage("assets/icon/edit_profile.png"),
-                        size: 40,
+                        shape: BoxShape.circle,
                       ),
                     ),
-                  ),
-                ],
-              ),
-                
-              NormalTextfield(
-                hind: AppLocalizations.of(context)!.editProfileName,
-              ),
-              NormalTextfield(
-                hind: AppLocalizations.of(context)!.editProfileName,
-              ),
-              NormalTextfield(
-                hind: AppLocalizations.of(context)!.editProfileEmail,
-              ),
-              InputField(
-                hind: AppLocalizations.of(context)!.editProfileDpb,
-                icon: Icons.calendar_month,
-                controller: emailcontroller,
-              ),
-              
-                
-              Container(
-                decoration: BoxDecoration(
-                  color: Colors.grey.shade100,
-                  borderRadius: BorderRadius.circular(10),
-                  border: BoxBorder.all(width: 2, color: Colors.grey),
+
+                    Padding(
+                      padding: const EdgeInsets.only(top: 145, left: 140),
+
+                      child: EditProfileIcon(),
+                      // child: IconButton(
+                      //   onPressed: () {
+                      //     Navigator.push(
+                      //       context,
+                      //       MaterialPageRoute(
+                      //         builder: (context) => SelectImageImagepicker(),
+                      //       ),
+                      //     );
+                      //   },
+                      //   icon: ImageIcon(
+                      //     AssetImage("assets/icon/edit-icon.png"),
+                      //     size: 40,
+                      //   ),
+                      // ),
+                    ),
+                  ],
                 ),
-                width: double.infinity,
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 5, left: 20),
-                  child: DropdownButton(
-                    value: selectedValue,
-                    isExpanded: true,
-                    hint: Text(
-                      AppLocalizations.of(context)!.editProfileGender,
-                      style: TextStyle(color: Colors.grey),
-                    ),
-                
-                    items: ["Male", "Female", "Other"]
-                        .map(
-                          (item) => DropdownMenuItem(
-                            value: item,
-                            child: Text(item),
-                          ),
-                        )
-                        .toList(),
-                    onChanged: (value) {
-                      setState(() {
-                        selectedValue = value;
-                      });
-                    },
-                  ),
+
+                NormalTextfield(
+                  hind: AppLocalizations.of(context)!.editProfileName,
                 ),
-              ),
-                
-              
-                
-              InputButton(
-                inputText: AppLocalizations.of(context)!.confirm,
-                nextpage: () {
-                  showDialog(
-                    context: context,
-                    builder: (context) => AlertDialog(
-                      title: Column(
-                        children: [
-                          Image.asset(
-                            "assets/images/popupimage.png",
-                            width: 130,
-                            height: 130,
-                          ),
-                          SizedBox(height: 20),
-                
-                          const Text(
-                            "Congratulations!",
-                            style: TextStyle(fontSize: 20),
-                          ),
-                        ],
+                NormalTextfield(
+                  hind: AppLocalizations.of(context)!.editProfileNickname,
+                ),
+                NormalTextfield(
+                  hind: AppLocalizations.of(context)!.editProfileEmail,
+                ),
+                InputField(
+                  hind: AppLocalizations.of(context)!.editProfileDpb,
+                  icon: ImageIcon(AssetImage("assets/icon/calendar-2.png"),color: Colors.grey.shade400),
+                  controller: emailcontroller,
+                ),
+
+                Container(
+                  decoration: BoxDecoration(
+                    color: Colors.grey.shade100,
+                    borderRadius: BorderRadius.circular(10),
+                    border: BoxBorder.all(width: 1, color:Color.fromARGB(106, 158, 158, 158)),
+                  ),
+                  width: double.infinity,
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 5, left: 20),
+                    child: DropdownButton(
+                      value: selectedValue,
+                      isExpanded: true,
+                      hint: Text(
+                        AppLocalizations.of(context)!.editProfileGender,
+                        style: TextStyle(color: Colors.grey),
                       ),
-                      content: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(15.0),
-                            child: const Text(
-                              "Your account is ready to use. You will be redirected to the Home Page in a few seconds....",
-                              textAlign: TextAlign.center,
+
+                      items: ["Male", "Female", "Other"]
+                          .map(
+                            (item) => DropdownMenuItem(
+                              value: item,
+                              child: Text(item),
                             ),
-                          ),
+                          )
+                          .toList(),
+                      onChanged: (value) {
+                        setState(() {
+                          selectedValue = value;
+                        });
+                      },
+                    ),
+                  ),
+                ),
+
+                InputButton(
+                  inputText: AppLocalizations.of(context)!.save,
+                  nextpage: () {
+                    showDialog(
+                      context: context,
+                      builder: (context) => AlertDialog(
+                        title: Column(
+                          children: [
+                            Image.asset(
+                              "assets/images/popupimage.png",
+                              width: 130,
+                              height: 130,
+                            ),
+                            SizedBox(height: 20),
+
+                            const Text(
+                              "Congratulations!",
+                              style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),
+                        content: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(15.0),
+                              child: const Text(
+                                "Your account is ready to use. You will be redirected to the Home Page in a few seconds....",
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          ],
+                        ),
+                        actions: [
+                          const SpinKitCircle(color: Colors.black, size: 50),
                         ],
                       ),
-                      actions: [
-                        const SpinKitCircle(color: Colors.blue, size: 50),
-                      ],
-                    ),
-                  );
-                
-                  Future.delayed(Duration(seconds: 3), () {
-                    //Navigator.pop(context);
-                
-                    if (widget.from == "profile") {
-                      // ignore: use_build_context_synchronously
-                      Navigator.push(
+                    );
+
+                    Future.delayed(Duration(seconds: 3), () {
+                      //Navigator.pop(context);
+
+                      if (widget.from == "profile") {
                         // ignore: use_build_context_synchronously
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => HomeLayout(initialIndex: 3),
-                        ),
-                      );
-                    } else {
-                      // ignore: use_build_context_synchronously
-                      Navigator.push(
+                        Navigator.push(
+                          // ignore: use_build_context_synchronously
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => HomeLayout(initialIndex: 3),
+                          ),
+                        );
+                      } else {
                         // ignore: use_build_context_synchronously
-                        context,
-                        MaterialPageRoute(builder: (context) => HomeLayout()),
-                      );
-                    }
-                  });
-                },
-              ),
-            ],
+                        Navigator.push(
+                          // ignore: use_build_context_synchronously
+                          context,
+                          MaterialPageRoute(builder: (context) => HomeLayout()),
+                        );
+                      }
+                    });
+                  },
+                ),
+              ],
+            ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class EditProfileIcon extends StatelessWidget {
+  const EditProfileIcon({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () {
+    
+           
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => SelectImageImagepicker(),
+          ),
+        );
+        
+    
+      },
+      child: Stack(
+        children:[ Stack(
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.black,
+                borderRadius: BorderRadius.circular(10)
+              ),
+              width: 30,
+              height: 30,
+              
+            ),
+              Positioned(
+                bottom: 0,
+                child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.black,
+                  
+                ),
+                width: 15,
+                height: 15,
+                
+              ),
+              ),
+              // Center(
+              //   child: Container(
+              //     decoration: BoxDecoration(
+              //       image: DecorationImage(image: AssetImage("assets/icon/Group.png"))
+              //     ),
+              //   ),
+              // )
+        
+              
+          ],
+        ),
+        Positioned(
+          top: 6,
+          left: 6,
+          child: Container(
+            width: 18,
+            height: 18,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(image: AssetImage("assets/icon/Group.png"),fit: BoxFit.cover)
+                    ),
+                  ),
+        ),
+        
+        ]
       ),
     );
   }

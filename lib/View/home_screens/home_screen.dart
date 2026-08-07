@@ -1,10 +1,11 @@
 import 'package:docter_appointment_app/Modal/hospital_list_modal.dart';
-import 'package:docter_appointment_app/Service/hospital_list_api.dart';
+import 'package:docter_appointment_app/View/home_screens/components/home_screen_adv.dart';
 import 'package:docter_appointment_app/View/home_screens/components/home_title.dart';
 import 'package:docter_appointment_app/View/home_screens/components/icon_butten.dart';
 import 'package:docter_appointment_app/View/home_screens/components/medical_centers.dart';
 import 'package:docter_appointment_app/View/home_screens/doctor_search_screen.dart';
 import 'package:docter_appointment_app/View/home_screens/notification_screen.dart';
+import 'package:docter_appointment_app/ViewModal/hospital_provider.dart';
 import 'package:docter_appointment_app/ViewModal/language_provider.dart';
 import 'package:docter_appointment_app/l10n/app_localizations.dart';
 import 'package:dots_indicator/dots_indicator.dart';
@@ -21,16 +22,20 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   String? selectedLocation = "en";
   String? value = "en";
-  final HospitalListApi hospitalListApi = HospitalListApi();
+  int currentindex=0;
+  
+  //final HospitalListApi hospitalListApi = HospitalListApi();
   List<HospitalModel> hospitallist = [];
   @override
   void initState() {
     super.initState();
+    
     loadDoctor();
   }
 
   Future<void> loadDoctor() async {
-    hospitallist = await hospitalListApi.getHospitalListApi();
+    // hospitallist = await hospitalListApi.getHospitalListApi();
+    hospitallist = await context.read<HospitalProvider>().hospitalProvider();
 
     setState(() {});
   }
@@ -43,260 +48,291 @@ class _MyHomePageState extends State<MyHomePage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 50, left: 24, right: 24),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    AppLocalizations.of(context)!.location,
-                    style: TextStyle(fontSize: 14, color: Colors.grey),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 60, left: 20, right: 30),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      Text(
+                        AppLocalizations.of(context)!.location,
+                        style: TextStyle(fontSize: 14, color: Colors.grey),
+                      ),
+        
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Icon(Icons.location_on, size: 14),
-
-                          DropdownButton(
-                            value: selectedLocation,
-
-                            items: [
-                              DropdownMenuItem(
-                                value: "en",
-                                child: Text(
-                                  "Seattle, USA",
-                                  style: TextStyle(fontSize: 14),
+                          Row(
+                            children: [
+                              //  Icon(Icons.location_on, size: 14),
+                              ImageIcon(AssetImage("assets/icon/Vector .png")),
+                              
+        
+                              DropdownButtonHideUnderline(
+                                child: DropdownButton(
+                                  dropdownColor: Colors.white,
+                                  
+                                  
+                                  value: selectedLocation,
+                                        
+                                  items: [
+                                    DropdownMenuItem(
+                                      value: "en",
+                                      child: Text(
+                                        "Seattle, USA",
+                                        style: TextStyle(fontSize: 18),
+                                      ),
+                                    ),
+                                    DropdownMenuItem(
+                                      value: "fa",
+                                      child: Text("دبی، امارات متحده عربی"),
+                                    ),
+                                  ],
+                                        
+                                  onChanged: (String? value) async {
+                                    if (value == null) return;
+                                        
+                                    setState(() {
+                                      selectedLocation = value;
+                                    });
+                                        
+                                    context
+                                        .read<LanguageProvider>()
+                                        .changeLanguage(value);
+                                  },
                                 ),
                               ),
-                              DropdownMenuItem(
-                                value: "fa",
-                                child: Text("دبی، امارات متحده عربی"),
-                              ),
                             ],
-
-                            onChanged: (String? value) async {
-                              if (value == null) return;
-
-                              setState(() {
-                                selectedLocation = value;
-                              });
-
-                              context.read<LanguageProvider>().changeLanguage(
-                                value,
-                              );
-                            },
+                          ),
+        
+                          //SizedBox(width: 20,),
+                          //Icon(Icons.notifications),
+                          Container(
+                            width: 40,
+                            height: 40,
+                            decoration: BoxDecoration(
+                              color: Colors.grey.shade100,
+                              borderRadius: BorderRadius.circular(50)
+                            ),
+                            child: IconButton(
+                              icon: ImageIcon(AssetImage("assets/icon/ads_background.png")),
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => NotificationScreen(),
+                                  ),
+                                );
+                              },
+                            ),
                           ),
                         ],
                       ),
+        
+                      SizedBox(height: 5),
+        
+                      ElevatedButton(
+                      
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.grey.shade100,
+                          shadowColor: Colors.transparent,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadiusGeometry.circular(10)
+                          )
 
-                      //SizedBox(width: 20,),
-                      //Icon(Icons.notifications),
-                      IconButton(icon:Icon(Icons.notifications),
+                        ),
+                        
+                        
                         onPressed: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => NotificationScreen(),));
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => DoctorSearchScreen(),
+                            ),
+                          );
                         },
-                        )
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            //Icon(Icons.search, color: Colors.grey),
+                            ImageIcon(AssetImage("assets/icon/search-normal.png"),size: 30,color: Colors.grey,),
+                            SizedBox(width: 5),
+                            Text(
+                              AppLocalizations.of(context)!.serchDocter,
+                              style: TextStyle(color: Colors.grey,fontSize: 16),
+                            ),
+                          ],
+                        ),
+                      ),
                     ],
                   ),
-
-                  SizedBox(height: 5),
-
-                  ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => DoctorSearchScreen(),
-                        ),
-                      );
-                    },
-                    child: Row(
+                ),
+        
+                //SearchFeild(),
+                SizedBox(height: 10),
+        
+                Column(
+                  children: [
+                    Stack(
                       children: [
-                        Icon(Icons.search, color: Colors.grey),
-                        SizedBox(width: 5),
-                        Text(
-                          AppLocalizations.of(context)!.serchDocter,
-                          style: TextStyle(color: Colors.grey),
+                        SizedBox(
+                          height: 170,
+                          child: PageView(
+                            
+                            onPageChanged: (index) {
+                              setState(() {
+                                currentindex=index;
+                              });
+                            },
+                            
+                            //       controller: PageController(
+                            //         viewportFraction: 0.9
+                            //       ),
+        
+                            //       scrollDirection: Axis.horizontal,
+                            children: [
+                              HomeScreenAdv(),
+                              HomeScreenAdv(),
+                              HomeScreenAdv(),
+                              HomeScreenAdv(),
+                            ],
+                            
+                          ),
+                        ),
+        
+                        Positioned(
+                          bottom: 10,
+                          left: 150,
+                          child: DotsIndicator(
+                            dotsCount: 4,
+                            position: currentindex.toDouble(),
+                            decorator: DotsDecorator(
+                              spacing: EdgeInsets.all(3),
+                              size: const Size.square(6.0),
+                              activeSize: const Size(30.0, 6.0),
+                              activeShape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                              activeColor: Colors.white,
+                              color: Colors.white,
+                            ),
+                          ),
                         ),
                       ],
                     ),
-                  ),
-
-                  //SearchFeild(),
-                  SizedBox(height: 10),
-
-                  Container(
-                    padding: EdgeInsets.zero,
-                    child: Column(
-                      children: [
-                        Stack(
-                          children: [
-                            Container(
-                              height: 163,
-                              decoration: BoxDecoration(
-                                image: DecorationImage(
-                                  image: AssetImage(
-                                    "assets/images/ads_background.png",
-                                  ),
-                                  fit: BoxFit.cover,
+        
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20, right: 20),
+                      child: Column(
+                        children: [
+                          SizedBox(height: 1),
+        
+                          HomeTitle(
+                            title: AppLocalizations.of(context)!.categosies,
+                          ),
+        
+                          GridView.count(
+                            padding: EdgeInsets.zero,
+        
+                            shrinkWrap: true,
+                            physics: NeverScrollableScrollPhysics(),
+                            crossAxisSpacing: 10,
+        
+                            crossAxisCount: 4,
+                            childAspectRatio: 0.8,
+                            children: [
+                              IconButten(
+                                icon: AssetImage(
+                                  "assets/images/home_dentistry.png",
                                 ),
-                                borderRadius: BorderRadius.circular(20),
+                                text: AppLocalizations.of(context)!.dentistry,
                               ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 25, left: 15),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    AppLocalizations.of(context)!.lockingfor,
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  Text(
-                                    AppLocalizations.of(
-                                      context,
-                                    )!.specialistDocters,
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  Text(
-                                    AppLocalizations.of(context)!.shedule,
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 12,
-                                    ),
-                                  ),
-                                  Text(
-                                    AppLocalizations.of(context)!.ourdoc,
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 12,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-
-                            Positioned(
-                              bottom: 10,
-                              left: 120,
-                              child: DotsIndicator(
-                                dotsCount: 4,
-                                position: 0,
-                                decorator: DotsDecorator(
-                                  spacing: EdgeInsets.all(3),
-                                  size: const Size.square(6.0),
-                                  activeSize: const Size(30.0, 6.0),
-                                  activeShape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10.0),
-                                  ),
-                                  activeColor: Colors.white,
-                                  color: Colors.white,
+                              IconButten(
+                                icon: AssetImage(
+                                  "assets/images/home_cardio.png",
                                 ),
+                                text: AppLocalizations.of(context)!.cardio,
                               ),
-                            ),
-                          ],
-                        ),
-
-                        SizedBox(height: 1),
-
-                        HomeTitle(
-                          title: AppLocalizations.of(context)!.categosies,
-                        ),
-
-                        GridView.count(
-                          padding: EdgeInsets.zero,
-
-                          shrinkWrap: true,
-                          physics: NeverScrollableScrollPhysics(),
-
-                          crossAxisCount: 4,
-                          childAspectRatio: 1.0,
-                          children: [
-                            IconButten(
-                              icon: AssetImage(
-                                "assets/images/home_dentistry.png",
+                              IconButten(
+                                icon: AssetImage(
+                                  "assets/images/home_pulmono.png",
+                                ),
+                                text: AppLocalizations.of(context)!.pulmono,
                               ),
-                              text: AppLocalizations.of(context)!.dentistry,
-                            ),
-                            IconButten(
-                              icon: AssetImage("assets/images/home_cardio.png"),
-                              text: AppLocalizations.of(context)!.cardio,
-                            ),
-                            IconButten(
-                              icon: AssetImage(
-                                "assets/images/home_pulmono.png",
+                              IconButten(
+                                icon: AssetImage(
+                                  "assets/images/home_general.png",
+                                ),
+                                text: AppLocalizations.of(context)!.general,
                               ),
-                              text: AppLocalizations.of(context)!.pulmono,
-                            ),
-                            IconButten(
-                              icon: AssetImage(
-                                "assets/images/home_general.png",
+                              IconButten(
+                                icon: AssetImage(
+                                  "assets/images/home_newrology.png",
+                                ),
+                                text: AppLocalizations.of(context)!.neurology,
                               ),
-                              text: AppLocalizations.of(context)!.general,
-                            ),
-                            IconButten(
-                              icon: AssetImage(
-                                "assets/images/home_newrology.png",
+                              IconButten(
+                                icon: AssetImage(
+                                  "assets/images/home_gastro.png",
+                                ),
+                                text: AppLocalizations.of(context)!.gastroen,
                               ),
-                              text: AppLocalizations.of(context)!.neurology,
-                            ),
-                            IconButten(
-                              icon: AssetImage("assets/images/home_gastro.png"),
-                              text: AppLocalizations.of(context)!.gastroen,
-                            ),
-                            IconButten(
-                              icon: AssetImage("assets/images/home_labora.png"),
-                              text: AppLocalizations.of(context)!.laborato,
-                            ),
-                            IconButten(
-                              icon: AssetImage(
-                                "assets/images/home_vaccinat.png",
+                              IconButten(
+                                icon: AssetImage(
+                                  "assets/images/home_labora.png",
+                                ),
+                                text: AppLocalizations.of(context)!.laborato,
                               ),
-                              text: AppLocalizations.of(context)!.vaccinat,
-                            ),
-                          ],
-                        ),
-                        HomeTitle(
-                          title: AppLocalizations.of(
-                            context,
-                          )!.nearbyMedicalCender,
-                        ),
-                      ],
+                              IconButten(
+                                icon: AssetImage(
+                                  "assets/images/home_vaccinat.png",
+                                ),
+                                text: AppLocalizations.of(context)!.vaccinat,
+                              ),
+                            ],
+                          ),
+        
+                          HomeTitle(
+                            title: AppLocalizations.of(
+                              context,
+                            )!.nearbyMedicalCender,
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                ],
-              ),
+                  ],
+                ),
+              ],
             ),
-
+        
             SizedBox(
               height: 252,
               child: ListView.builder(
+                padding: EdgeInsets.only(right: 25,left: 15,),
+        
+                shrinkWrap: true,
                 scrollDirection: Axis.horizontal,
                 //shrinkWrap: true,
                 itemCount: hospitallist.length,
-                itemBuilder: (context, index) => MedicalCenters(
-                  width: 300,
-                  location:
-                      "${hospitallist[index].address}, ${hospitallist[index].city}",
-                  name: hospitallist[index].name,
-                  rating: hospitallist[index].rating,
-                  reviewcount: hospitallist[index].reviews,
-                  distance: hospitallist[index].distance,
-                  time: hospitallist[index].duration,
-                  type: hospitallist[index].type,
+                itemBuilder: (context, index) => Padding(
+                  padding: const EdgeInsets.only(left: 10),
+                  child: MedicalCenters(
+                    width: 250,
+                    location:
+                        "${hospitallist[index].address}, ${hospitallist[index].city}",
+                    name: hospitallist[index].name,
+                    rating: hospitallist[index].rating,
+                    reviewcount: hospitallist[index].reviews,
+                    distance: hospitallist[index].distance,
+                    time: hospitallist[index].duration,
+                    type: hospitallist[index].type,
+                  ),
                 ),
               ),
             ),
+            SizedBox(height: 20,)
           ],
         ),
       ),

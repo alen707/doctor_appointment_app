@@ -72,13 +72,13 @@ class _LoginScreenState extends State<NewPasswordScreen> {
 
               InputField(
                 hind: AppLocalizations.of(context)!.password,
-                icon: Icons.password,
+                icon: ImageIcon(AssetImage("assets/icon/lock.png"),color: Colors.grey.shade400),
                 controller: createnewpasswordcontroller,
               ),
                SizedBox(height: 15),
               InputField(
                 hind: AppLocalizations.of(context)!.conFormPassword,
-                icon: Icons.password,
+                icon: ImageIcon(AssetImage("assets/icon/lock.png"),color: Colors.grey.shade400),
                 controller: createnewpasswordcontroller,
               ),
 

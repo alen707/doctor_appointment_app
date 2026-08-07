@@ -263,7 +263,7 @@ abstract class AppLocalizations {
   /// No description provided for @signin.
   ///
   /// In en, this message translates to:
-  /// **' Sign In'**
+  /// **'Sign In'**
   String get signin;
 
   /// No description provided for @signinDiscription.
@@ -341,7 +341,7 @@ abstract class AppLocalizations {
   /// No description provided for @signup.
   ///
   /// In en, this message translates to:
-  /// **' Sign up'**
+  /// **'Sign up'**
   String get signup;
 
   /// No description provided for @signupdiscription.
@@ -413,13 +413,13 @@ abstract class AppLocalizations {
   /// No description provided for @cardio.
   ///
   /// In en, this message translates to:
-  /// **'Cardiolo..'**
+  /// **'Cardiologist'**
   String get cardio;
 
   /// No description provided for @pulmono.
   ///
   /// In en, this message translates to:
-  /// **'Pulmono..'**
+  /// **'Pulmonologist'**
   String get pulmono;
 
   /// No description provided for @general.
@@ -431,25 +431,25 @@ abstract class AppLocalizations {
   /// No description provided for @neurology.
   ///
   /// In en, this message translates to:
-  /// **'Neurology'**
+  /// **'Neurologist'**
   String get neurology;
 
   /// No description provided for @gastroen.
   ///
   /// In en, this message translates to:
-  /// **'Gastroen..'**
+  /// **'Gastroenterologist'**
   String get gastroen;
 
   /// No description provided for @laborato.
   ///
   /// In en, this message translates to:
-  /// **'Laborato..'**
+  /// **'Laboratory'**
   String get laborato;
 
   /// No description provided for @vaccinat.
   ///
   /// In en, this message translates to:
-  /// **'Vaccinat..'**
+  /// **'Vaccination'**
   String get vaccinat;
 
   /// No description provided for @nearbyMedicalCender.

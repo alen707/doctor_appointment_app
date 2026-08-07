@@ -17,10 +17,10 @@ class InputButton extends StatelessWidget {
         style: ElevatedButton.styleFrom(backgroundColor: Colors.black),
         onPressed: nextpage,
         child: Padding(
-          padding: const EdgeInsets.all(10.0),
+          padding: const EdgeInsets.all(15.0),
           child: Text(
             inputText,
-            style: TextStyle(color: Colors.white, fontSize: 20),
+            style: TextStyle(color: Colors.white, fontSize: 18),
           ),
         ),
       ),

@@ -24,7 +24,9 @@ class DoctorCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 15),
+      padding: const EdgeInsets.only(
+        //top: 15
+        ),
       child: Container(
         width: double.infinity,
         height: 250,
@@ -33,7 +35,7 @@ class DoctorCard extends StatelessWidget {
           color: Colors.white,
           boxShadow: [
             BoxShadow(
-              color: Colors.grey.shade400,
+              color: Colors.grey.shade300,
               spreadRadius: 2,
               blurRadius: 8,
               offset: const Offset(0, 4),
@@ -95,6 +97,7 @@ class DoctorCard extends StatelessWidget {
                               fontWeight: FontWeight.bold,
                               fontSize: 16,
                               decoration: TextDecoration.none,
+                               overflow: TextOverflow.ellipsis,
                             ),
                           ),
 
@@ -102,7 +105,8 @@ class DoctorCard extends StatelessWidget {
                           Text(
                             dep,
                             style: TextStyle(
-                              color: Colors.grey.shade700,
+                              color: Colors.grey.shade600,
+                              fontWeight: FontWeight.bold,
 
                               fontSize: 14,
                               decoration: TextDecoration.none,
@@ -111,10 +115,15 @@ class DoctorCard extends StatelessWidget {
                           SizedBox(height: 10),
                           Row(
                             children: [
-                              Icon(
-                                Icons.location_on,
-                                color: Colors.grey.shade500,
+                              ImageIcon(AssetImage("assets/icon/location.png"),
+                              color: Colors.grey,
+                              size: 18,
                               ),
+                              //AssetImage("assets/icon/location.png"),
+                              // Icon(
+                              //   Icons.location_on,
+                              //   color: Colors.grey.shade500,
+                              // ),
                               Flexible(
                                 child: Text(
                                   "$hospital,$location",
@@ -145,35 +154,41 @@ class DoctorCard extends StatelessWidget {
                   border: Border.all(color: Colors.grey.shade300),
                 ),
               ),
+              
 
-              Row(
-                children: [
-                  Expanded(
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.grey.shade300,
-                      ),
-                      onPressed: () {},
-                      child: Text(
-                        greyButten,
-                        style: TextStyle(fontSize: 14, color: Colors.black),
-                      ),
-                    ),
-                  ),
-                  SizedBox(width: 20),
-                  Expanded(
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.black,
-                      ),
-                      onPressed: () {},
-                      child: Text(
-                        blackButten,
-                        style: TextStyle(fontSize: 14, color: Colors.white),
+              Padding(
+                padding: const EdgeInsets.only(
+                  top: 10
+                ),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.grey.shade300,
+                        ),
+                        onPressed: () {},
+                        child: Text(
+                          greyButten,
+                          style: TextStyle(fontSize: 14, color: Colors.black),
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                    SizedBox(width: 20),
+                    Expanded(
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.black,
+                        ),
+                        onPressed: () {},
+                        child: Text(
+                          blackButten,
+                          style: TextStyle(fontSize: 14, color: Colors.white),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),

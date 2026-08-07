@@ -34,16 +34,23 @@ class _FavoritesHospitalsScrennState extends State<FavoritesHospitalsScreen> {
       child: ListView.builder(
         shrinkWrap: true,
         itemCount: hospitallist.length,
-        itemBuilder: (context, index) => MedicalCenters(
-          width: double.infinity,
-          location:
-              "${hospitallist[index].address}, ${hospitallist[index].city}",
-          name: hospitallist[index].name,
-          rating: hospitallist[index].rating,
-          reviewcount: hospitallist[index].reviews,
-          distance: hospitallist[index].distance,
-          time: hospitallist[index].duration,
-          type: hospitallist[index].type,
+        itemBuilder: (context, index) => Padding(
+          padding: const EdgeInsets.only(
+            top: 10,
+             left: 15,
+             right: 15
+          ),
+          child: MedicalCenters(
+            width: double.infinity,
+            location:
+                "${hospitallist[index].address}, ${hospitallist[index].city}",
+            name: hospitallist[index].name,
+            rating: hospitallist[index].rating,
+            reviewcount: hospitallist[index].reviews,
+            distance: hospitallist[index].distance,
+            time: hospitallist[index].duration,
+            type: hospitallist[index].type,
+          ),
         ),
       ),
     );
